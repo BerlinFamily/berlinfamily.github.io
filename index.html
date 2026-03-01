@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Berlin Family Vacation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── CSS VARIABLES ─────────────────────────────── */
+    :root {
+      --bg:           #F4F0F8;
+      --card-bg:      #E8E0F0;
+      --header-bg:    #6B5B8A;
+      --accent-mid:   #9B8BB4;
+      --steel-blue:   #4A6FA5;
+      --light-blue:   #A8C4E0;
+      --shadow-blue:  rgba(74, 111, 165, 0.25);
+      --text-heading: #2D2D2D;
+      --text-body:    #444444;
+      --text-subtle:  #6B6B6B;
+      --white:        #FFFFFF;
+    }
+
+    /* ── RESET & BASE ──────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-body);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ────────────────────────────────────── */
+    header {
+      background-color: var(--header-bg);
+      padding: 2.5rem 2rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle wave texture behind header */
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(155,139,180,0.35) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 30%, rgba(74,111,165,0.2) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .header-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-wrap {
+      width: 100px;
+      height: 100px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px var(--shadow-blue);
+      padding: 12px;
+      animation: floatIn 0.9s ease both;
+    }
+
+    .logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.02em;
+      animation: floatIn 0.9s ease 0.15s both;
+    }
+
+    header p.tagline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--light-blue);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      animation: floatIn 0.9s ease 0.3s both;
+    }
+
+    /* ── WAVE DIVIDER ──────────────────────────────── */
+    .wave {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      background: var(--bg);
+    }
+    .wave svg {
+      display: block;
+      width: 100%;
+      height: 60px;
+    }
+
+    /* ── MAIN CONTENT ──────────────────────────────── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    .section-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--steel-blue);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--text-heading);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── TRIP GRID ─────────────────────────────────── */
+    .trip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+
+    /* ── TRIP CARD ─────────────────────────────────── */
+    .trip-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      box-shadow: 0 4px 18px var(--shadow-blue);
+      border: 1px solid rgba(155, 139, 180, 0.3);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      animation: cardIn 0.6s ease both;
+    }
+
+    .trip-card:nth-child(1) { animation-delay: 0.1s; }
+    .trip-card:nth-child(2) { animation-delay: 0.2s; }
+    .trip-card:nth-child(3) { animation-delay: 0.3s; }
+
+    /* Decorative corner accent */
+    .trip-card::after {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(74,111,165,0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .trip-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 32px var(--shadow-blue);
+    }
+
+    .trip-card:focus-visible {
+      outline: 3px solid var(--steel-blue);
+      outline-offset: 3px;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-heading);
+      line-height: 1.2;
+    }
+
+    .card-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.25rem;
+    }
+
+    .card-detail {
+      font-size: 0.85rem;
+      color: var(--text-subtle);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .card-detail svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .card-cta {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--steel-blue);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: gap 0.2s ease;
+    }
+
+    .trip-card:hover .card-cta { gap: 0.6rem; }
+
+    /* Placeholder card style */
+    .trip-card.placeholder {
+      opacity: 0.7;
+      border-style: dashed;
+    }
+
+    /* ── FOOTER ────────────────────────────────────── */
+    footer {
+      background: var(--header-bg);
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--light-blue);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    footer span {
+      color: var(--accent-mid);
+    }
+
+    /* ── ANIMATIONS ────────────────────────────────── */
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 480px) {
+      header { padding: 2rem 1.25rem 1.5rem; }
+      main { padding: 2rem 1rem 4rem; }
+      .trip-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="header-inner">
+      <div class="logo-wrap">
+        <img src="BerlinFamilyLogo_fromCanva.jpg" alt="Berlin Family Vacation logo — a butterfly with flame-inspired wings" />
+      </div>
+      <h1>Berlin Family Vacation</h1>
+      <p class="tagline">The world is a book. Let's get reading.</p>
+    </div>
+  </header>
+
+  <!-- Wave transition from header to body -->
+  <div class="wave" aria-hidden="true">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C200,60 400,0 600,30 C800,60 1000,0 1200,30 L1200,60 L0,60 Z"
+            fill="#6B5B8A"/>
+    </svg>
+  </div>
+
+  <!-- ── MAIN ── -->
+  <main>
+    <p class="section-label">Our Adventures</p>
+    <h2 class="section-title">Where Are We Headed?</h2>
+
+    <div class="trip-grid">
+
+      <!-- Wedding Cruise 2026 -->
+      <a href="wedding-cruise-2026.html" class="trip-card" aria-label="View details for Wedding Cruise 2026">
+        <div class="card-icon">⚓</div>
+        <div class="card-title">Wedding Cruise 2026</div>
+        <div class="card-meta">
+          <span class="card-detail">
+            <!-- Calendar icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            2026
+          </span>
+          <span class="card-detail">
+            <!-- Location icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            At Sea
+          </span>
+        </div>
+        <div class="card-cta">View Trip &rarr;</div>
+      </a>
+
+      <!-- Paris 2026 (placeholder) -->
+      <a href="paris-2026.html" class="trip-card placeholder" aria-label="Paris 2026 — coming soon">
+        <div class="card-icon">🗼</div>
+        <div class="card-title">Paris 2026</div>
+        <div class="card-meta">
+          <span class="card-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            2026
+          </span>
+          <span class="card-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Paris, France
+          </span>
+        </div>
+        <div class="card-cta">Coming Soon &rarr;</div>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <span>✦</span> Berlin Family Vacation <span>✦</span>
+    <br/>Made with love for the people who matter most.
+  </footer>
+
+</body>
+</html>
