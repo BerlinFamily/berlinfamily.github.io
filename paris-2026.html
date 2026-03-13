@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:           #F4F0F8;
+      --bg:           #FDF8F2;
       --card-bg:      #EAF0F8;
       --header-bg:    #2A5FA0;
       --accent-royal: #2A5FA0;
@@ -34,7 +34,7 @@
     /* HEADER */
     header {
       background: var(--header-bg);
-      color: #fff;
+      color: #FDF8F2;
       text-align: center;
       padding: 3rem 1.5rem 2.5rem;
       position: relative;
@@ -54,7 +54,7 @@
     }
     .back-link:hover,
     .back-link:focus-visible {
-      color: #fff;
+      color: #FDF8F2;
       outline: 2px solid var(--accent-light);
       outline-offset: 4px;
       border-radius: 3px;
@@ -73,7 +73,7 @@
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.2rem, 5vw, 3.2rem);
       font-weight: 700;
-      color: #fff;
+      color: #FDF8F2;
       line-height: 1.15;
       margin-bottom: 0.5rem;
     }
@@ -161,7 +161,7 @@
     }
 
     .guest-card {
-      background: #fff;
+      background: #F5EFE6;
       border-radius: 10px;
       padding: 1rem;
       text-align: center;
@@ -211,7 +211,7 @@
 
     .travel-table th {
       background: var(--accent-royal);
-      color: #fff;
+      color: #FDF8F2;
       font-weight: 700;
       font-size: 0.78rem;
       letter-spacing: 0.06em;
@@ -292,7 +292,7 @@
     }
     footer a:hover,
     footer a:focus-visible {
-      color: #fff;
+      color: #FDF8F2;
       outline: 2px solid var(--accent-light);
       outline-offset: 3px;
       border-radius: 2px;
@@ -340,16 +340,11 @@
             <div class="guest-name">Karyn</div>
           </div>
 
-          <!-- Marlene — Latin cross, top arm shorter, fleur tips -->
+          <!-- Marlene — fleur de lys cross from image -->
           <div class="guest-card">
             <div class="guest-icon">
-              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#2A5FA0" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="50" y1="15" x2="50" y2="90" stroke-width="8" stroke="#2A5FA0"/>
-                <line x1="22" y1="36" x2="78" y2="36" stroke-width="8" stroke="#2A5FA0"/>
-                <path d="M50,15 C48,11 46,8 48,5 Q50,3 52,5 C54,8 52,11 50,15 Z" fill="#2A5FA0" stroke="none"/>
-                <path d="M50,90 C47,93 46,97 50,99 Q54,97 50,90 Z" fill="#2A5FA0" stroke="none"/>
-                <path d="M22,36 C18,33 14,33 12,36 Q14,39 22,36 Z" fill="#2A5FA0" stroke="none"/>
-                <path d="M78,36 C82,33 86,33 88,36 Q86,39 78,36 Z" fill="#2A5FA0" stroke="none"/>
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <image href="data:image/png;base64,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" x="22" y="4" width="56" height="92" preserveAspectRatio="xMidYMid meet"/>
               </svg>
             </div>
             <div class="guest-name">Marlene</div>
