@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Around the Apartment · Paris 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:           #F0F4F8;
+      --card-bg:      #EAF0F8;
+      --header-bg:    #2A5FA0;
+      --accent-royal: #2A5FA0;
+      --accent-steel: #4A6FA5;
+      --accent-light: #A8C4E0;
+      --heading:      #2D2D2D;
+      --body:         #444444;
+      --subtle:       #6B6B6B;
+      --shadow:       rgba(42, 95, 160, 0.18);
+      --shadow-hover: rgba(42, 95, 160, 0.32);
+      --border:       rgba(42, 95, 160, 0.15);
+      --radius:       14px;
+
+      /* Category colors */
+      --cat-landmark: #2A5FA0;
+      --cat-museum:   #5B4E8A;
+      --cat-food:     #B85C3A;
+      --cat-culture:  #3A7A5A;
+      --cat-metro:    #1A6B6B;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--bg);
+      color: var(--body);
+      line-height: 1.7;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--header-bg);
+      color: #fff;
+      text-align: center;
+      padding: 2.5rem 1.5rem 2rem;
+      position: relative;
+    }
+
+    .back-link {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.5rem;
+      color: var(--accent-light);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .back-link:hover, .back-link:focus-visible {
+      color: #fff;
+      outline: 2px solid var(--accent-light);
+      outline-offset: 4px;
+      border-radius: 3px;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .header-sub {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--accent-light);
+      letter-spacing: 0.06em;
+    }
+
+    .wave {
+      display: block;
+      width: 100%;
+      height: 40px;
+      margin-top: -1px;
+    }
+
+    /* INTRO */
+    .intro {
+      max-width: 700px;
+      margin: 2rem auto 0;
+      padding: 0 1.5rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--subtle);
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* MAIN */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 4rem;
+    }
+
+    /* CATEGORY SECTION */
+    .category {
+      margin-bottom: 2.5rem;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .category-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .category-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--subtle);
+    }
+
+    /* CARDS GRID */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 3px 14px var(--shadow);
+      padding: 1.1rem 1.2rem 1rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+      border-left: 3px solid var(--cat-color, var(--accent-steel));
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 22px var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--heading);
+      margin-bottom: 0.25rem;
+    }
+
+    .card-desc {
+      font-size: 0.87rem;
+      color: var(--body);
+      margin-bottom: 0.6rem;
+      line-height: 1.55;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: auto;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    .pill-walk {
+      background: rgba(42, 95, 160, 0.1);
+      color: var(--accent-royal);
+    }
+
+    .pill-metro {
+      background: rgba(26, 107, 107, 0.1);
+      color: var(--cat-metro);
+    }
+
+    .pill-tip {
+      background: rgba(184, 92, 58, 0.09);
+      color: var(--cat-food);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* METRO NOTE */
+    .metro-note {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 3px 14px var(--shadow);
+      padding: 1.1rem 1.4rem;
+      margin-bottom: 2.5rem;
+      border-left: 3px solid var(--cat-metro);
+      font-size: 0.88rem;
+    }
+
+    .metro-note strong {
+      color: var(--heading);
+      font-weight: 700;
+    }
+
+    .metro-note p + p {
+      margin-top: 0.4rem;
+    }
+
+    .card-address {
+      font-size: 0.75rem;
+      color: var(--subtle);
+      margin-bottom: 0.5rem;
+      font-family: 'Lato', sans-serif;
+    }
+    .card-address a {
+      color: var(--subtle);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--subtle);
+    }
+    .card-address a:hover { color: var(--accent-royal); }
+
+    /* FOOTER */
+    footer {
+      background: var(--header-bg);
+      color: var(--accent-light);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+    }
+
+    footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+    footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="paris-2026.html" class="back-link">← Paris 2026</a>
+    <h1>Around the Apartment</h1>
+    <p class="header-sub">Rue Croix des Petits Champs · 1st arrondissement</p>
+
+  </header>
+
+  <svg class="wave" viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 L0,20 Q360,0 720,20 Q1080,40 1440,20 L1440,40 Z" fill="#2A5FA0"/>
+  </svg>
+
+  <p class="intro">
+    We are staying in the heart of the 1st arrondissement — one of the most walkable corners of Paris.
+    Nearly everything below is reachable on foot or by a single metro stop.
+  </p>
+
+  <main>
+
+    <!-- METRO ORIENTATION -->
+    <div class="metro-note">
+      <p><strong>Nearest metro:</strong> Palais Royal – Musée du Louvre (Lines 1 &amp; 7) — roughly 3 min walk from the apartment. Line 1 runs east–west across the entire city and connects nearly everything on this list.</p>
+      <p><strong>Tickets:</strong> Buy a carnet (10-pack) or load a Navigo Découverte card. Single ticket ~€2.15. The metro is fast, cheap, and runs until ~1 AM.</p>
+    </div>
+
+    <!-- LANDMARKS -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-dot" style="background: var(--cat-landmark)"></div>
+        <span class="category-title">Landmarks</span>
+      </div>
+      <div class="cards">
+
+        <div class="card" style="--cat-color: var(--cat-landmark)">
+          <div class="card-name">The Louvre</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=Rue+de+Rivoli,+75001+Paris" target="_blank">📍 Rue de Rivoli, 75001</a></div>
+          <div class="card-desc">The world's largest art museum — and practically our backyard. No need to see everything; picking two wings and wandering is a perfectly good plan.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 8 min walk</span>
+            <span class="pill pill-tip">Book tickets in advance — lines are brutal</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-landmark)">
+          <div class="card-name">Palais Royal Gardens</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=Place+du+Palais+Royal,+75001+Paris" target="_blank">📍 Pl. du Palais Royal, 75001</a></div>
+          <div class="card-desc">A hidden gem steps from the apartment — colonnaded arcades, manicured gardens, and the famous Buren columns. Free, calm, and very Parisian.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 4 min walk</span>
+            <span class="pill pill-tip">Perfect morning coffee stop</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-landmark)">
+          <div class="card-name">Eiffel Tower</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=Champ+de+Mars,+5+Avenue+Anatole+France,+75007+Paris" target="_blank">📍 Champ de Mars, 75007</a></div>
+          <div class="card-desc">If there's one thing Paris is famous for, it's this. Going at dusk is lovely — the golden hour and the 9 PM light show are both worth lingering for. The view from Trocadéro across the river is hard to beat.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 ~55 min walk</span>
+            <span class="pill pill-metro">🚇 Line 1 → Bir-Hakeim (~20 min)</span>
+            <span class="pill pill-tip">Book summit tickets weeks ahead</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-landmark)">
+          <div class="card-name">Notre-Dame de Paris</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=6+Parvis+Notre-Dame,+75004+Paris" target="_blank">📍 6 Parvis Notre-Dame, 75004</a></div>
+          <div class="card-desc">Reopened in December 2024 after years of restoration — a once-in-a-generation moment to see it gleaming and renewed.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 20 min walk</span>
+            <span class="pill pill-metro">🚇 Line 1 → Hôtel de Ville (~5 min)</span>
+            <span class="pill pill-tip">Free entry; timed reservations recommended</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-landmark)">
+          <div class="card-name">Pont Alexandre III</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=Pont+Alexandre+III,+75008+Paris" target="_blank">📍 Pont Alexandre III, 75008</a></div>
+          <div class="card-desc">The most ornate bridge in Paris — gilded lamps, winged horses, cherubs, and a perfect frame for the Eiffel Tower in the distance. Worth a detour just to stand on it.</div>
+          <div class="card-meta">
+            <span class="pill pill-metro">🚇 Line 1 → Concorde, walk ~15 min</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-landmark)">
+          <div class="card-name">Place Vendôme</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=Place+Vendome,+75001+Paris" target="_blank">📍 Pl. Vendôme, 75001</a></div>
+          <div class="card-desc">Napoleon's triumphal column, surrounded by the world's most expensive jewelers. Window shopping is entirely acceptable — it's stunning to simply stand in the square.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 12 min walk</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MUSEUMS -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-dot" style="background: var(--cat-museum)"></div>
+        <span class="category-title">Museums Worth the Detour</span>
+      </div>
+      <div class="cards">
+
+        <div class="card" style="--cat-color: var(--cat-museum)">
+          <div class="card-name">Musée d'Orsay</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=1+Rue+de+la+Legion+d+Honneur,+75007+Paris" target="_blank">📍 1 Rue de la Légion d'Honneur, 75007</a></div>
+          <div class="card-desc">Impressionism at its finest — Monet, Degas, Renoir, Van Gogh — housed in a breathtaking converted train station. Smaller and less overwhelming than the Louvre.</div>
+          <div class="card-meta">
+            <span class="pill pill-metro">🚇 Line 1 → Concorde, RER C one stop</span>
+            <span class="pill pill-tip">Closed Mondays</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-museum)">
+          <div class="card-name">Petit Palais</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=Avenue+Winston+Churchill,+75008+Paris" target="_blank">📍 Av. Winston Churchill, 75008</a></div>
+          <div class="card-desc">The City of Paris's fine arts museum — free admission, gorgeous Belle Époque building, and a peaceful garden café inside. An underrated gem.</div>
+          <div class="card-meta">
+            <span class="pill pill-metro">🚇 Line 1 → Champs-Élysées–Clemenceau</span>
+            <span class="pill pill-tip">Free entry — no tickets needed</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-museum)">
+          <div class="card-name">Centre Pompidou</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=Place+Georges+Pompidou,+75004+Paris" target="_blank">📍 Pl. Georges-Pompidou, 75004</a></div>
+          <div class="card-desc">Modern and contemporary art in an inside-out building that's a spectacle in itself. Millie might find this one more exciting than the Louvre — it's a little wild.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 22 min walk</span>
+            <span class="pill pill-metro">🚇 Line 11 → Rambuteau</span>
+            <span class="pill pill-tip">Closed Tuesdays</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FOOD & BAKERIES -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-dot" style="background: var(--cat-food)"></div>
+        <span class="category-title">Bakeries &amp; Cafés</span>
+      </div>
+      <div class="cards">
+
+        <div class="card" style="--cat-color: var(--cat-food)">
+          <div class="card-name">Angelina</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=226+Rue+de+Rivoli,+75001+Paris" target="_blank">📍 226 Rue de Rivoli, 75001</a></div>
+          <div class="card-desc">A Parisian institution since 1903. Famous for its impossibly rich hot chocolate and Mont Blanc pastry. On Rue de Rivoli — a 10-minute walk along the Tuileries.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 10 min walk</span>
+            <span class="pill pill-tip">A treat worth trying</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-food)">
+          <div class="card-name">Stohrer</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=51+Rue+Montorgueil,+75002+Paris" target="_blank">📍 51 Rue Montorgueil, 75002</a></div>
+          <div class="card-desc">Paris's oldest pâtisserie, open since 1730. The original baba au rhum was invented here. Located on lively Rue Montorgueil — a street worth the whole walk.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 15 min walk</span>
+            <span class="pill pill-tip">The éclair and fraisier are favorites</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-food)">
+          <div class="card-name">Café Kitsuné</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=51+Galerie+de+Montpensier,+75001+Paris" target="_blank">📍 51 Galerie de Montpensier, 75001</a></div>
+          <div class="card-desc">A beloved coffee spot tucked into the Palais Royal arcades. Japanese-influenced and beautifully designed — a lovely option for a slow morning start.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 4 min walk</span>
+            <span class="pill pill-tip">Grab a latte and sit in the gardens</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-food)">
+          <div class="card-name">Télescope</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=5+Rue+Villedo,+75001+Paris" target="_blank">📍 5 Rue Villedo, 75001</a></div>
+          <div class="card-desc">One of the best specialty coffee shops in Paris, just a few streets from the apartment. Small, serious about coffee, beloved by locals.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 6 min walk</span>
+            <span class="pill pill-tip">No laptop crowd — it's a proper café</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-food)">
+          <div class="card-name">Rue Montorgueil</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=Rue+Montorgueil,+75002+Paris" target="_blank">📍 Rue Montorgueil, 75002</a></div>
+          <div class="card-desc">Not one place, but a whole street. A covered pedestrian market street lined with boulangeries, fromageries, and produce stalls. This is what Paris actually looks like.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 15 min walk</span>
+            <span class="pill pill-tip">Go on a weekday morning</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CULTURE & ATMOSPHERE -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-dot" style="background: var(--cat-culture)"></div>
+        <span class="category-title">Culture &amp; Atmosphere</span>
+      </div>
+      <div class="cards">
+
+        <div class="card" style="--cat-color: var(--cat-culture)">
+          <div class="card-name">Jardin des Tuileries</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=113+Rue+de+Rivoli,+75001+Paris" target="_blank">📍 113 Rue de Rivoli, 75001</a></div>
+          <div class="card-desc">The grand formal garden between the Louvre and the Champs-Élysées. A good spot to slow down — grab a chair by the fountain, watch the pigeons, and let Paris happen around you.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 10 min walk</span>
+            <span class="pill pill-tip">Free to enter</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-culture)">
+          <div class="card-name">Galerie Vivienne</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=4+Rue+des+Petits+Champs,+75002+Paris" target="_blank">📍 4 Rue des Petits Champs, 75002</a></div>
+          <div class="card-desc">A covered 19th-century arcade near the Palais Royal — mosaic floors, glass ceilings, tea salons, and antiquarian bookshops. One of the city's most beautiful secrets.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 8 min walk</span>
+            <span class="pill pill-tip">Free to wander; lovely in the rain</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-culture)">
+          <div class="card-name">Le Marais</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=Le+Marais,+75003+Paris" target="_blank">📍 Rue de Bretagne, 75003</a></div>
+          <div class="card-desc">One of the most characterful neighborhoods in Paris — medieval streets, Jewish bakeries, art galleries, and the Place des Vosges. Easy to lose a whole afternoon here, happily.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 25 min walk</span>
+            <span class="pill pill-metro">🚇 Line 1 → Saint-Paul</span>
+            <span class="pill pill-tip">Try a falafel on Rue des Rosiers</span>
+          </div>
+        </div>
+
+        <div class="card" style="--cat-color: var(--cat-culture)">
+          <div class="card-name">Seine River Walk</div>
+          <div class="card-address"><a href="https://maps.google.com/?q=Pont+Neuf,+75001+Paris" target="_blank">📍 Pont Neuf, 75001</a></div>
+          <div class="card-desc">A walk west along the river toward the Eiffel Tower, past the bouquinistes — the green-stall booksellers who have lined the Seine for centuries. Vintage postcards are a nice find if you stumble across one.</div>
+          <div class="card-meta">
+            <span class="pill pill-walk">🚶 Start from Pont Neuf, 12 min walk</span>
+            <span class="pill pill-tip">Best at golden hour</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="paris-2026.html">← Back to Paris 2026</a>
+  </footer>
+
+</body>
+</html>
