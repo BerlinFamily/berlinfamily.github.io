@@ -1,808 +1,899 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>C+M Wedding Cruise 2026 💍</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --blush: #f9c6d0;
-    --rose: #e8738a;
-    --deep-rose: #c0425c;
-    --sand: #fdf6f0;
-    --warm-white: #fffcfa;
-    --text: #3a2a2e;
-    --muted: #9a7a82;
-    --ocean: #5b9bb5;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C+M Wedding Cruise 2026 · Berlin Family Vacation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:            #FDF6F0;
+      --card-bg:       #FDF0F4;
+      --deep-rose:     #C0425C;
+      --darkest-rose:  #A03050;
+      --medium-rose:   #E8738A;
+      --soft-blush:    #F9C6D0;
+      --barely-blush:  #FCE4EC;
+      --ocean:         #5B9BB5;
+      --warm-sand:     #FDF6F0;
+      --heading:       #2D2D2D;
+      --body:          #444444;
+      --subtle:        #6B6B6B;
+      --border:        rgba(232, 115, 138, 0.22);
+      --shadow:        rgba(192, 66, 92, 0.14);
+      --shadow-hover:  rgba(192, 66, 92, 0.26);
+      --radius:        16px;
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--sand);
-    color: var(--text);
-    font-weight: 300;
-  }
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--bg);
+      color: var(--body);
+      line-height: 1.7;
+    }
 
-  /* HERO */
-  .hero {
-    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 40%, #e8aab9 70%, #c97b8f 100%);
-    padding: 70px 40px 60px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 300px; height: 300px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.15);
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -80px; left: -40px;
-    width: 220px; height: 220px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.1);
-  }
-  .hero-tag {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--deep-rose);
-    margin-bottom: 16px;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(38px, 7vw, 72px);
-    color: var(--deep-rose);
-    line-height: 1.1;
-    margin-bottom: 10px;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: #a03050;
-  }
-  .hero-date {
-    font-size: 15px;
-    color: var(--deep-rose);
-    letter-spacing: 1px;
-    margin-top: 18px;
-  }
-  .ship-badge {
-    display: inline-block;
-    background: white;
-    color: var(--deep-rose);
-    border-radius: 30px;
-    padding: 6px 20px;
-    font-size: 13px;
-    font-weight: 500;
-    margin-top: 20px;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 12px rgba(192,66,92,0.15);
-  }
+    /* ── HEADER ─────────────────────────────────────────── */
+    header {
+      background: var(--deep-rose);
+      color: white;
+      text-align: center;
+      padding: 3.5rem 1.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      pointer-events: none;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -60px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      pointer-events: none;
+    }
+    .back-link {
+      position: absolute;
+      top: 1.25rem; left: 1.5rem;
+      color: var(--soft-blush);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-link:hover,
+    .back-link:focus-visible {
+      color: white;
+      outline: 2px solid var(--soft-blush);
+      outline-offset: 4px;
+      border-radius: 3px;
+    }
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--soft-blush);
+      margin-bottom: 0.75rem;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+    header h1 em {
+      font-style: italic;
+      color: var(--soft-blush);
+    }
+    .header-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--soft-blush);
+      letter-spacing: 0.05em;
+      margin-top: 0.5rem;
+    }
+    .header-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      border-radius: 30px;
+      padding: 6px 20px;
+      font-size: 0.8rem;
+      font-weight: 400;
+      margin-top: 1.25rem;
+      letter-spacing: 0.04em;
+    }
 
-  /* WAVE DIVIDER */
-  .wave {
-    display: block;
-    width: 100%;
-    height: 40px;
-    overflow: hidden;
-    line-height: 0;
-  }
-  .wave svg { display: block; }
+    /* ── WAVE ───────────────────────────────────────────── */
+    .wave { display: block; width: 100%; height: 48px; margin-top: -1px; }
 
-  /* MAIN CONTENT */
-  .container {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 24px 60px;
-  }
+    /* ── MAIN ───────────────────────────────────────────── */
+    main {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 5rem;
+    }
 
-  /* SECTION */
-  .section {
-    margin-top: 52px;
-  }
-  .section-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--rose);
-    margin-bottom: 6px;
-  }
-  .section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    color: var(--text);
-    margin-bottom: 20px;
-    border-bottom: 1.5px solid var(--blush);
-    padding-bottom: 10px;
-  }
+    /* ── COLLAPSIBLE CARDS ──────────────────────────────── */
+    details {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: 0 3px 16px var(--shadow);
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    details:hover,
+    details[open] {
+      box-shadow: 0 5px 24px var(--shadow-hover);
+    }
+    summary {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--deep-rose);
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-left: 4px solid var(--deep-rose);
+      transition: background 0.15s;
+      user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary:hover { background: var(--barely-blush); }
+    summary:focus-visible {
+      outline: 2px solid var(--deep-rose);
+      outline-offset: -2px;
+    }
+    summary::after {
+      content: '›';
+      font-size: 1.6rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      color: var(--medium-rose);
+      transition: transform 0.25s ease;
+      line-height: 1;
+    }
+    details[open] summary::after { transform: rotate(90deg); }
+    .section-body {
+      padding: 0 1.5rem 1.5rem;
+      border-top: 1px solid var(--barely-blush);
+    }
 
-  /* AT A GLANCE CARDS */
-  .glance-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 14px;
-  }
-  .glance-card {
-    background: var(--warm-white);
-    border: 1px solid #f0dce2;
-    border-radius: 14px;
-    padding: 20px 18px;
-    text-align: center;
-  }
-  .glance-card .icon { font-size: 26px; margin-bottom: 8px; }
-  .glance-card .label {
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 4px;
-  }
-  .glance-card .value {
-    font-weight: 500;
-    font-size: 15px;
-    color: var(--text);
-  }
+    /* ── AT A GLANCE ────────────────────────────────────── */
+    .glance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      padding-top: 1.25rem;
+    }
+    .glance-card {
+      background: var(--barely-blush);
+      border-radius: 12px;
+      padding: 1.1rem;
+      text-align: center;
+    }
+    .glance-card .icon { font-size: 1.6rem; margin-bottom: 0.4rem; }
+    .glance-card .label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--medium-rose);
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .glance-card .value {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--heading);
+    }
 
-  /* ITINERARY */
-  .itinerary {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    position: relative;
-  }
-  .itinerary::before {
-    content: '';
-    position: absolute;
-    left: 28px;
-    top: 0; bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--blush), var(--rose), var(--blush));
-  }
-  .itin-day {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 18px 0;
-    position: relative;
-  }
-  .itin-dot {
-    width: 58px;
-    height: 58px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 500;
-    z-index: 1;
-    position: relative;
-  }
-  .itin-dot.depart { background: var(--deep-rose); color: white; }
-  .itin-dot.port { background: var(--blush); color: var(--deep-rose); }
-  .itin-dot.sea { background: #d4eaf5; color: var(--ocean); }
-  .itin-dot.arrive { background: var(--deep-rose); color: white; }
-  .itin-dot .day-num { font-size: 18px; font-weight: 700; line-height: 1; }
-  .itin-content { padding-top: 12px; }
-  .itin-content strong { font-size: 16px; font-weight: 500; display: block; }
-  .itin-content span { font-size: 13px; color: var(--muted); }
+    /* ── ITINERARY ──────────────────────────────────────── */
+    .itinerary {
+      padding-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .itinerary::before {
+      content: '';
+      position: absolute;
+      left: 28px; top: 1.25rem; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--soft-blush), var(--medium-rose), var(--soft-blush));
+    }
+    .itin-day {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 0.9rem 0;
+      position: relative;
+    }
+    .itin-dot {
+      width: 56px; height: 56px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      z-index: 1;
+      letter-spacing: 0.03em;
+    }
+    .itin-dot.depart  { background: var(--deep-rose); color: white; }
+    .itin-dot.island  { background: var(--soft-blush); color: var(--deep-rose); }
+    .itin-dot.sea     { background: #D4EAF5; color: var(--ocean); }
+    .itin-dot.port    { background: var(--barely-blush); color: var(--deep-rose); }
+    .itin-dot.arrive  { background: var(--deep-rose); color: white; }
+    .itin-dot .day-n  { font-size: 1.2rem; font-weight: 700; line-height: 1; }
+    .itin-content { padding-top: 0.9rem; }
+    .itin-content strong { font-size: 1rem; font-weight: 600; color: var(--heading); display: block; }
+    .itin-content span { font-size: 0.85rem; color: var(--subtle); }
 
-  /* GUESTS */
-  .guest-grid, .kid-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-  }
-  .guest-card {
-    background: var(--warm-white);
-    border: 1px solid #f0dce2;
-    border-radius: 12px;
-    padding: 16px 14px;
-    text-align: center;
-  }
-  .guest-avatar {
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--blush), var(--rose));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    margin: 0 auto 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-  }
-  .kid-avatar {
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    margin: 0 auto 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-  }
-  .guest-name { font-size: 14px; font-weight: 500; }
-  .guest-role { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    /* ── GUESTS ─────────────────────────────────────────── */
+    .guest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 12px;
+      padding-top: 1.25rem;
+    }
+    .guest-card {
+      background: var(--barely-blush);
+      border-radius: 12px;
+      padding: 1rem 0.75rem;
+      text-align: center;
+    }
+    .guest-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--soft-blush), var(--medium-rose));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin: 0 auto 0.6rem;
+    }
+    .kid-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      margin: 0 auto 0.6rem;
+      overflow: hidden;
+    }
+    .guest-name { font-size: 0.85rem; font-weight: 700; color: var(--heading); }
+    .guest-role { font-size: 0.72rem; color: var(--subtle); margin-top: 0.1rem; }
+    .guest-group-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--medium-rose);
+      margin: 1.25rem 0 0.5rem;
+    }
+    .guest-group-label:first-of-type { margin-top: 1.25rem; }
 
-  /* ROOMS */
-  .rooms-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-  @media (max-width: 600px) { .rooms-grid { grid-template-columns: repeat(2, 1fr); } }
-  .room-card {
-    background: var(--warm-white);
-    border: 1px solid #f0dce2;
-    border-radius: 12px;
-    padding: 16px;
-  }
-  .room-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    color: var(--rose);
-    margin-bottom: 8px;
-  }
-  .room-card p { font-size: 13px; line-height: 1.7; }
+    /* ── ROOMS ──────────────────────────────────────────── */
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 1rem;
+    }
+    @media (max-width: 560px) { .rooms-grid { grid-template-columns: repeat(2, 1fr); } }
+    .room-card {
+      background: var(--barely-blush);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+    }
+    .room-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--deep-rose);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .room-card p { font-size: 0.83rem; line-height: 1.6; color: var(--body); }
 
-  /* FLIGHTS */
-  .flight-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-  .flight-table th {
-    text-align: left;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 8px 10px;
-    border-bottom: 1px solid var(--blush);
-  }
-  .flight-table td {
-    padding: 10px 10px;
-    border-bottom: 1px solid #f5e8eb;
-    vertical-align: top;
-  }
-  .flight-table tr:last-child td { border-bottom: none; }
-  .flight-table .conf {
-    font-family: monospace;
-    font-size: 12px;
-    background: var(--blush);
-    color: var(--deep-rose);
-    padding: 2px 7px;
-    border-radius: 4px;
-  }
-  .flight-section-header {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--rose);
-    padding: 18px 0 6px;
-    font-weight: 500;
-  }
+    /* ── FLIGHTS ─────────────────────────────────────────── */
+    .flight-subheading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--deep-rose);
+      margin: 1.5rem 0 0.2rem;
+    }
+    .flight-subheading:first-of-type { margin-top: 1.25rem; }
+    .flight-note {
+      font-size: 0.8rem;
+      color: var(--ocean);
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .flight-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      min-width: 500px;
+    }
+    .flight-table thead tr { background: var(--soft-blush); }
+    .flight-table th {
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 700;
+      color: var(--deep-rose);
+      border: 1px solid var(--medium-rose);
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .flight-table td {
+      padding: 7px 12px;
+      border: 1px solid #f0d0d8;
+      color: var(--heading);
+      background: white;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .flight-table tr.alt td { background: var(--barely-blush); }
+    .status-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      background: #EAF4F9;
+      color: var(--ocean);
+      border: 1px solid #b0d4e3;
+      transition: background 0.15s, color 0.15s;
+      letter-spacing: 0.02em;
+    }
+    .status-badge:hover,
+    .status-badge:focus-visible {
+      background: var(--ocean);
+      color: white;
+      outline: 2px solid var(--ocean);
+      outline-offset: 2px;
+    }
+    .flight-footnote {
+      font-size: 0.76rem;
+      color: var(--subtle);
+      font-style: italic;
+      margin-top: 0.9rem;
+      line-height: 1.6;
+    }
 
-  /* WEDDING TIMELINE */
-  .timeline { display: flex; flex-direction: column; gap: 0; }
-  .tl-item {
-    display: flex;
-    gap: 16px;
-    padding: 10px 0;
-    border-left: 2px solid var(--blush);
-    margin-left: 20px;
-    padding-left: 20px;
-    position: relative;
-  }
-  .tl-item::before {
-    content: '';
-    position: absolute;
-    left: -6px; top: 16px;
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--rose);
-    border: 2px solid var(--warm-white);
-  }
-  .tl-item.highlight::before { background: var(--deep-rose); width: 13px; height: 13px; left: -7.5px; }
-  .tl-time {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--rose);
-    min-width: 65px;
-    padding-top: 1px;
-  }
-  .tl-desc { font-size: 14px; line-height: 1.5; }
-  .tl-desc strong { font-weight: 500; display: block; }
-  .tl-desc small { font-size: 12px; color: var(--muted); }
+    /* ── WEDDING TIMELINE ────────────────────────────────── */
+    .timeline {
+      padding-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .tl-item {
+      display: flex;
+      gap: 1rem;
+      padding: 0.75rem 0 0.75rem 1.25rem;
+      border-left: 2px solid var(--soft-blush);
+      margin-left: 0.5rem;
+      position: relative;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -5px; top: 1.1rem;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--medium-rose);
+      border: 2px solid white;
+    }
+    .tl-item.highlight::before {
+      background: var(--deep-rose);
+      width: 12px; height: 12px;
+      left: -7px;
+    }
+    .tl-time {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--medium-rose);
+      min-width: 78px;
+      padding-top: 0.1rem;
+      flex-shrink: 0;
+    }
+    .tl-desc { font-size: 0.88rem; line-height: 1.5; }
+    .tl-desc strong { font-weight: 700; color: var(--heading); display: block; }
+    .tl-desc small { font-size: 0.8rem; color: var(--subtle); }
 
-  /* PACKING */
-  .pack-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  @media (max-width: 500px) { .pack-grid { grid-template-columns: 1fr; } }
-  .pack-col h3 {
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--rose);
-    margin-bottom: 10px;
-  }
-  .pack-col ul { list-style: none; }
-  .pack-col ul li {
-    font-size: 14px;
-    padding: 5px 0;
-    border-bottom: 1px solid #f5e8eb;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .pack-col ul li::before {
-    content: '•';
-    color: var(--rose);
-    font-size: 18px;
-    line-height: 0;
-  }
+    /* ── PACKING ─────────────────────────────────────────── */
+    .pack-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding-top: 1.25rem;
+    }
+    @media (max-width: 480px) { .pack-grid { grid-template-columns: 1fr; } }
+    .pack-col h3 {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--medium-rose);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .pack-col ul { list-style: none; }
+    .pack-col ul li {
+      font-size: 0.88rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--barely-blush);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--body);
+    }
+    .pack-col ul li::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--medium-rose);
+      flex-shrink: 0;
+    }
 
-  /* ADMIN SECTION */
-  .admin-toggle {
-    margin-top: 60px;
-    background: #f5e8eb;
-    border-radius: 14px;
-    overflow: hidden;
-  }
-  .admin-toggle summary {
-    padding: 18px 24px;
-    cursor: pointer;
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 500;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .admin-toggle summary::after { content: '▾'; font-size: 16px; }
-  .admin-toggle[open] summary::after { content: '▴'; }
-  .admin-inner { padding: 0 24px 24px; }
-  .admin-inner table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-    margin-top: 16px;
-  }
-  .admin-inner th {
-    text-align: left;
-    color: var(--muted);
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 6px 8px;
-    border-bottom: 1px solid var(--blush);
-  }
-  .admin-inner td {
-    padding: 8px 8px;
-    border-bottom: 1px solid #f5e8eb;
-    vertical-align: top;
-  }
-  .admin-inner tr:last-child td { border-bottom: none; }
-  .admin-sub { font-size: 11px; color: var(--muted); margin-top: 14px; margin-bottom: 4px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; }
+    /* ── CHECKLIST ───────────────────────────────────────── */
+    .checklist {
+      list-style: none;
+      padding-top: 1.25rem;
+    }
+    .checklist li {
+      font-size: 0.88rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--barely-blush);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--body);
+    }
+    .checklist li::before {
+      content: '☐';
+      color: var(--medium-rose);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .checklist li.done { color: var(--subtle); text-decoration: line-through; }
+    .checklist li.done::before { content: '☑'; color: var(--deep-rose); }
 
-  /* CHECKLIST */
-  .checklist { list-style: none; }
-  .checklist li {
-    font-size: 14px;
-    padding: 8px 0;
-    border-bottom: 1px solid #f5e8eb;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .checklist li::before {
-    content: '☐';
-    color: var(--rose);
-    font-size: 16px;
-  }
-  .checklist li.done::before { content: '☑'; color: var(--deep-rose); }
+    /* ── GOOGLE DOC LINK ─────────────────────────────────── */
+    .doc-link-block {
+      margin-top: 2.5rem;
+      background: var(--barely-blush);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      border: 1px solid var(--soft-blush);
+    }
+    .doc-link-block p {
+      font-size: 0.88rem;
+      color: var(--body);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .doc-link-block .doc-btn {
+      display: inline-block;
+      background: var(--deep-rose);
+      color: white;
+      text-decoration: none;
+      padding: 10px 28px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+    .doc-link-block .doc-btn:hover,
+    .doc-link-block .doc-btn:focus-visible {
+      background: var(--darkest-rose);
+      outline: 2px solid var(--deep-rose);
+      outline-offset: 3px;
+    }
+    .doc-link-block small {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.72rem;
+      color: var(--subtle);
+    }
 
-  /* FOOTER */
-  footer {
-    text-align: center;
-    padding: 40px;
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 1px;
-  }
-  footer span { color: var(--rose); }
-</style>
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--deep-rose);
+      color: var(--soft-blush);
+      text-align: center;
+      padding: 1.75rem 1.5rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+    footer a {
+      color: var(--soft-blush);
+      text-decoration: none;
+    }
+    footer a:hover,
+    footer a:focus-visible {
+      color: white;
+      outline: 2px solid var(--soft-blush);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .guest-grid { grid-template-columns: repeat(3, 1fr); }
+      summary { font-size: 1.05rem; padding: 1rem 1.25rem; }
+      .section-body { padding: 0 1rem 1.25rem; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <p class="hero-tag">June 13–18, 2026 · Caribbean</p>
-  <h1>Christine <em>&</em> Michael</h1>
-  <h1 style="font-size: clamp(20px,4vw,36px); margin-top:6px;">Wedding Cruise 💍</h1>
-  <p class="hero-date">Freedom of the Seas · Departing Miami</p>
-  <span class="ship-badge">🛳️ 5 Nights · 11 Guests · 1 Wedding</span>
-</div>
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" class="back-link">← All Trips</a>
+    <p class="eyebrow">June 13–18, 2026 · Caribbean</p>
+    <h1>Christine <em>&amp;</em> Michael</h1>
+    <h1 style="font-size: clamp(1.4rem, 3.5vw, 2.2rem); margin-top: 0.3rem; font-weight: 400; font-style: italic;">Wedding Cruise 💍</h1>
+    <p class="header-sub">Freedom of the Seas · Departing Miami, FL</p>
+    <span class="header-badge">🛳️ 5 Nights · 14 Guests · 1 Wedding</span>
+  </header>
 
-<svg class="wave" viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-  <path d="M0,20 C360,50 1080,-10 1440,20 L1440,40 L0,40 Z" fill="#fdf6f0"/>
-</svg>
+  <svg class="wave" viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,48 L0,28 Q360,0 720,28 Q1080,52 1440,24 L1440,48 Z" fill="#C0425C"/>
+  </svg>
 
-<div class="container">
+  <main>
 
-  <!-- AT A GLANCE -->
-  <div class="section">
-    <p class="section-label">The Basics</p>
-    <h2>Trip at a Glance</h2>
-    <div class="glance-grid">
-      <div class="glance-card">
-        <div class="icon">🛳️</div>
-        <div class="label">Ship</div>
-        <div class="value">Freedom of the Seas</div>
-      </div>
-      <div class="glance-card">
-        <div class="icon">📅</div>
-        <div class="label">Depart</div>
-        <div class="value">June 13, 2026 · 4:30 PM</div>
-      </div>
-      <div class="glance-card">
-        <div class="icon">🏠</div>
-        <div class="label">Return</div>
-        <div class="value">June 18, 2026 · 6:00 AM</div>
-      </div>
-      <div class="glance-card">
-        <div class="icon">⚓</div>
-        <div class="label">Port</div>
-        <div class="value">Miami, FL</div>
-      </div>
-      <div class="glance-card">
-        <div class="icon">🏖️</div>
-        <div class="label">Fly into</div>
-        <div class="value">Fort Lauderdale (FLL)</div>
-      </div>
-      <div class="glance-card">
-        <div class="icon">🛏️</div>
-        <div class="label">Cabin Type</div>
-        <div class="value">Oceanview · Open Dining</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ITINERARY -->
-  <div class="section">
-    <p class="section-label">Where We're Going</p>
-    <h2>Itinerary</h2>
-    <div class="itinerary">
-      <div class="itin-day">
-        <div class="itin-dot depart"><div class="day-num">1</div><div>Jun 13</div></div>
-        <div class="itin-content">
-          <strong>🌴 Miami, Florida</strong>
-          <span>Board the ship · Depart 4:30 PM · Let the adventure begin!</span>
+    <!-- AT A GLANCE -->
+    <details open>
+      <summary>Trip at a Glance</summary>
+      <div class="section-body">
+        <div class="glance-grid">
+          <div class="glance-card">
+            <div class="icon">🛳️</div>
+            <div class="label">Ship</div>
+            <div class="value">Freedom of the Seas</div>
+          </div>
+          <div class="glance-card">
+            <div class="icon">📅</div>
+            <div class="label">Depart</div>
+            <div class="value">June 13, 2026 · 4:30 PM</div>
+          </div>
+          <div class="glance-card">
+            <div class="icon">🏠</div>
+            <div class="label">Return</div>
+            <div class="value">June 18, 2026 · 6:00 AM</div>
+          </div>
+          <div class="glance-card">
+            <div class="icon">⚓</div>
+            <div class="label">Port</div>
+            <div class="value">Miami, FL</div>
+          </div>
+          <div class="glance-card">
+            <div class="icon">✈️</div>
+            <div class="label">Fly into</div>
+            <div class="value">Fort Lauderdale (FLL)</div>
+          </div>
+          <div class="glance-card">
+            <div class="icon">🏨</div>
+            <div class="label">Pre-Cruise Hotel</div>
+            <div class="value"><a href="https://www.google.com/maps/search/?api=1&query=227+Northeast+2nd+Avenue+Miami+FL+33132" target="_blank" rel="noopener" style="color:var(--deep-rose); text-decoration:none;">YOTELPAD Miami</a></div>
+          </div>
+          <div class="glance-card">
+            <div class="icon">🛏️</div>
+            <div class="label">Cabins</div>
+            <div class="value">Oceanview · Open Dining</div>
+          </div>
         </div>
       </div>
-      <div class="itin-day">
-        <div class="itin-dot port"><div class="day-num">2</div><div>Jun 14</div></div>
-        <div class="itin-content">
-          <strong>💍 Perfect Day at CocoCay</strong>
-          <span>7:00 AM – 5:00 PM · This is the big day — wedding on the beach!</span>
+    </details>
+
+    <!-- ITINERARY -->
+    <details>
+      <summary>Itinerary</summary>
+      <div class="section-body">
+        <div class="itinerary">
+          <div class="itin-day">
+            <div class="itin-dot depart"><div class="day-n">1</div><div>Jun 13</div></div>
+            <div class="itin-content">
+              <strong>🌴 Miami, Florida</strong>
+              <span>Board ship · Depart 4:30 PM</span>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-dot island"><div class="day-n">2</div><div>Jun 14</div></div>
+            <div class="itin-content">
+              <strong>💍 Perfect Day at CocoCay</strong>
+              <span>7:00 AM – 5:00 PM · Wedding day</span>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-dot sea"><div class="day-n">3</div><div>Jun 15</div></div>
+            <div class="itin-content">
+              <strong>🌊 Day at Sea</strong>
+              <span>Relax · swim · celebrate</span>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-dot port"><div class="day-n">4</div><div>Jun 16</div></div>
+            <div class="itin-content">
+              <strong>🦀 Nassau, Bahamas</strong>
+              <span>7:30 AM – 5:30 PM</span>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-dot sea"><div class="day-n">5</div><div>Jun 17</div></div>
+            <div class="itin-content">
+              <strong>🌊 Day at Sea</strong>
+              <span>One last day on the water</span>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-dot arrive"><div class="day-n">6</div><div>Jun 18</div></div>
+            <div class="itin-content">
+              <strong>🏠 Back to Miami</strong>
+              <span>Arrive 6:00 AM · Disembark · Fly home</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="itin-day">
-        <div class="itin-dot sea"><div class="day-num">3</div><div>Jun 15</div></div>
-        <div class="itin-content">
-          <strong>🌊 Day at Sea</strong>
-          <span>Relax, swim, spa, celebrate — you're married!</span>
+    </details>
+
+    <!-- GUESTS -->
+    <details>
+      <summary>Who's Coming 🎉</summary>
+      <div class="section-body">
+
+        <p class="guest-group-label">Adults</p>
+        <div class="guest-grid">
+          <div class="guest-card"><div class="guest-avatar">👰</div><div class="guest-name">Christine</div><div class="guest-role">Bride</div></div>
+          <div class="guest-card"><div class="guest-avatar">🤵</div><div class="guest-name">Michael Sr.</div><div class="guest-role">Groom</div></div>
+          <div class="guest-card"><div class="guest-avatar">👩</div><div class="guest-name">Karyn</div><div class="guest-role">Mom</div></div>
+          <div class="guest-card"><div class="guest-avatar">👨</div><div class="guest-name">Manzel</div><div class="guest-role">Dad</div></div>
+          <div class="guest-card"><div class="guest-avatar">👩</div><div class="guest-name">Anna</div><div class="guest-role">Auntie</div></div>
+          <div class="guest-card"><div class="guest-avatar">👩</div><div class="guest-name">Mandy</div><div class="guest-role">Auntie</div></div>
+        </div>
+
+        <p class="guest-group-label">Kids 🌊</p>
+        <div class="guest-grid">
+          <div class="guest-card"><div class="kid-avatar"><svg width="52" height="52" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kA" cx="50%" cy="75%" r="80%"><stop offset="0%" stop-color="#FF6B35"/><stop offset="55%" stop-color="#FF9F5B"/><stop offset="100%" stop-color="#FFD166"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kA)"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><line x1="28" y1="9" x2="19" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="9" x2="37" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M17 15 Q21 22 28 20 Q35 22 39 15Z" fill="white"/><circle cx="28" cy="15" r="2" fill="#FFD166"/><path d="M19 29 Q28 26 37 29 Q37 35 28 36 Q19 35 19 29Z" fill="white"/><rect x="19" y="28" width="18" height="2.5" rx="1.25" fill="#FFD166"/></svg></div><div class="guest-name">Lainey</div></div>
+          <div class="guest-card"><div class="kid-avatar"><svg width="52" height="52" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kB" cx="40%" cy="65%" r="80%"><stop offset="0%" stop-color="#D94F8A"/><stop offset="55%" stop-color="#FF7B54"/><stop offset="100%" stop-color="#FFD166"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kB)"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><line x1="28" y1="9" x2="19" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="9" x2="37" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M17 15 Q21 22 28 20 Q35 22 39 15Z" fill="white"/><circle cx="28" cy="15" r="2" fill="#FFD166"/><path d="M19 29 Q28 26 37 29 Q37 35 28 36 Q19 35 19 29Z" fill="white"/><rect x="19" y="28" width="18" height="2.5" rx="1.25" fill="#FFD166"/></svg></div><div class="guest-name">Lily</div></div>
+          <div class="guest-card"><div class="kid-avatar"><svg width="52" height="52" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kC" cx="60%" cy="55%" r="80%"><stop offset="0%" stop-color="#FF9F5B"/><stop offset="50%" stop-color="#FF6B35"/><stop offset="100%" stop-color="#C0425C"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kC)"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><line x1="28" y1="9" x2="19" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="9" x2="37" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M17 15 Q21 22 28 20 Q35 22 39 15Z" fill="white"/><circle cx="28" cy="15" r="2" fill="#FFD166"/><path d="M19 29 Q28 26 37 29 Q37 35 28 36 Q19 35 19 29Z" fill="white"/><rect x="19" y="28" width="18" height="2.5" rx="1.25" fill="#FFD166"/></svg></div><div class="guest-name">Rori</div></div>
+          <div class="guest-card"><div class="kid-avatar"><svg width="52" height="52" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kD" cx="50%" cy="40%" r="80%"><stop offset="0%" stop-color="#FFD166"/><stop offset="50%" stop-color="#FF9F5B"/><stop offset="100%" stop-color="#C05A20"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kD)"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><rect x="17" y="13" width="22" height="5" rx="2.5" fill="#FFD166"/><path d="M17 17 L18 36 L25 36 L28 24 L31 36 L38 36 L39 17Z" fill="white"/><rect x="17" y="17" width="4.5" height="19" rx="2" fill="#FFD166" opacity="0.6"/><rect x="34.5" y="17" width="4.5" height="19" rx="2" fill="#FFD166" opacity="0.6"/></svg></div><div class="guest-name">Michael Jr.</div></div>
+          <div class="guest-card"><div class="kid-avatar"><svg width="52" height="52" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kE" cx="35%" cy="60%" r="80%"><stop offset="0%" stop-color="#FFD166"/><stop offset="45%" stop-color="#FF7B54"/><stop offset="100%" stop-color="#D94F8A"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kE)"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><rect x="17" y="13" width="22" height="5" rx="2.5" fill="#FFD166"/><path d="M17 17 L18 36 L25 36 L28 24 L31 36 L38 36 L39 17Z" fill="white"/><rect x="17" y="17" width="4.5" height="19" rx="2" fill="#FFD166" opacity="0.6"/><rect x="34.5" y="17" width="4.5" height="19" rx="2" fill="#FFD166" opacity="0.6"/></svg></div><div class="guest-name">Joshua</div></div>
+          <div class="guest-card"><div class="kid-avatar"><svg width="52" height="52" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kF" cx="50%" cy="70%" r="80%"><stop offset="0%" stop-color="#FF9F5B"/><stop offset="45%" stop-color="#FFD166"/><stop offset="100%" stop-color="#FF6B35"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kF)"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><line x1="28" y1="9" x2="19" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="9" x2="37" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M17 15 Q21 22 28 20 Q35 22 39 15Z" fill="white"/><circle cx="28" cy="15" r="2" fill="#FFD166"/><path d="M19 29 Q28 26 37 29 Q37 35 28 36 Q19 35 19 29Z" fill="white"/><rect x="19" y="28" width="18" height="2.5" rx="1.25" fill="#FFD166"/></svg></div><div class="guest-name">Trinity</div></div>
+          <div class="guest-card"><div class="kid-avatar"><svg width="52" height="52" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kG" cx="55%" cy="45%" r="80%"><stop offset="0%" stop-color="#C0425C"/><stop offset="50%" stop-color="#FF7B54"/><stop offset="100%" stop-color="#FFD166"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kG)"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><line x1="28" y1="9" x2="19" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="9" x2="37" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M17 15 Q21 22 28 20 Q35 22 39 15Z" fill="white"/><circle cx="28" cy="15" r="2" fill="#FFD166"/><path d="M19 29 Q28 26 37 29 Q37 35 28 36 Q19 35 19 29Z" fill="white"/><rect x="19" y="28" width="18" height="2.5" rx="1.25" fill="#FFD166"/></svg></div><div class="guest-name">Millie</div></div>
+          <div class="guest-card"><div class="kid-avatar"><svg width="52" height="52" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kH" cx="45%" cy="55%" r="80%"><stop offset="0%" stop-color="#5B9BB5"/><stop offset="50%" stop-color="#FF9F5B"/><stop offset="100%" stop-color="#FFD166"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kH)"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><rect x="17" y="13" width="22" height="5" rx="2.5" fill="#FFD166"/><path d="M17 17 L18 36 L25 36 L28 24 L31 36 L38 36 L39 17Z" fill="white"/><rect x="17" y="17" width="4.5" height="19" rx="2" fill="#FFD166" opacity="0.6"/><rect x="34.5" y="17" width="4.5" height="19" rx="2" fill="#FFD166" opacity="0.6"/></svg></div><div class="guest-name">Liam</div></div>
+        </div>
+
+        <p class="guest-group-label" style="margin-top:1.5rem;">Room Assignments 🛏️</p>
+        <div class="rooms-grid">
+          <div class="room-card"><div class="room-num">Cabin 7487</div><p>Christine<br>Lainey</p></div>
+          <div class="room-card"><div class="room-num">Cabin 7489</div><p>Michael Sr.<br>Liam</p></div>
+          <div class="room-card"><div class="room-num">Cabin 7491</div><p>Manzel (Dad)<br>Michael Jr.</p></div>
+          <div class="room-card"><div class="room-num">Cabin 7493</div><p>Mandy<br>Millie</p></div>
+          <div class="room-card"><div class="room-num">Cabin 7495</div><p>Karyn<br>Lily</p></div>
+          <div class="room-card"><div class="room-num">Cabin 7497 + 7499</div><p>Anna · Trinity<br>Joshua · Rori</p></div>
+        </div>
+        <p style="font-size:0.75rem; color:var(--subtle); margin-top:0.75rem;">All oceanview cabins · Deck 7</p>
+
+      </div>
+    </details>
+
+    <!-- FLIGHTS -->
+    <details>
+      <summary>✈️ Flight Information</summary>
+      <div class="section-body">
+
+        <p class="flight-subheading">🛬 Flights In</p>
+        <p class="flight-note">Arriving June 9, 11 &amp; 12 · Fort Lauderdale (FLL) and Miami (MIA)</p>
+        <div class="table-scroll">
+          <table class="flight-table">
+            <thead>
+              <tr>
+                <th>Group</th><th>Flight</th><th>Route</th><th>Date</th>
+                <th>Departs</th><th>Arrives</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dad + Coyles</td><td>Southwest 4316 / 1306</td><td>OMA → ATL</td><td>Jun 9</td>
+                <td>10:35 am</td><td>3:55 pm</td>
+                <td><a class="status-badge" href="https://flightaware.com/live/flight/SWA4316/history/20260609" target="_blank" rel="noopener">⋯ Scheduled</a></td>
+              </tr>
+              <tr class="alt">
+                <td>Berlin + Bailey</td><td>Allegiant 3471</td><td>RFD → FLL</td><td>Jun 11</td>
+                <td>11:37 pm</td><td>3:35 pm</td>
+                <td><a class="status-badge" href="https://flightaware.com/live/flight/AAY3471/history/20260611" target="_blank" rel="noopener">⋯ Scheduled</a></td>
+              </tr>
+              <tr>
+                <td>Anna's family</td><td>Alaska 516</td><td>SEA → FLL</td><td>Jun 12</td>
+                <td>8:20 am</td><td>5:27 pm</td>
+                <td><a class="status-badge" href="https://flightaware.com/live/flight/ASA516/history/20260612" target="_blank" rel="noopener">⋯ Scheduled</a></td>
+              </tr>
+              <tr class="alt">
+                <td>Dad + Coyles</td><td>American 1367</td><td>ATL → MIA</td><td>Jun 12</td>
+                <td>6:53 pm</td><td>8:59 pm</td>
+                <td><a class="status-badge" href="https://flightaware.com/live/flight/AAL1367/history/20260612" target="_blank" rel="noopener">⋯ Scheduled</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="flight-subheading" style="margin-top:1.75rem;">🛫 Flights Out</p>
+        <p class="flight-note">Departing June 18 &amp; 19 · Fort Lauderdale (FLL) and Miami (MIA)</p>
+        <div class="table-scroll">
+          <table class="flight-table">
+            <thead>
+              <tr>
+                <th>Group</th><th>Flight</th><th>Route</th><th>Date</th>
+                <th>Departs</th><th>Arrives</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Anna's family</td><td>Alaska 305</td><td>MIA → SEA</td><td>Jun 18</td>
+                <td>6:17 pm</td><td>10:00 pm</td>
+                <td><a class="status-badge" href="https://flightaware.com/live/flight/ASA305/history/20260618" target="_blank" rel="noopener">⋯ Scheduled</a></td>
+              </tr>
+              <tr class="alt">
+                <td>Dad + Coyles</td><td>American 512</td><td>MIA → ATL</td><td>Jun 19</td>
+                <td>7:43 am</td><td>9:44 am</td>
+                <td><a class="status-badge" href="https://flightaware.com/live/flight/AAL512/history/20260619" target="_blank" rel="noopener">⋯ Scheduled</a></td>
+              </tr>
+              <tr>
+                <td>Berlin + Bailey</td><td>Allegiant 2123</td><td>FLL → CID</td><td>Jun 19</td>
+                <td>2:54 pm</td><td>5:09 pm</td>
+                <td><a class="status-badge" href="https://flightaware.com/live/flight/AAY2123/history/20260619" target="_blank" rel="noopener">⋯ Scheduled</a></td>
+              </tr>
+              <tr class="alt">
+                <td>Dad + Coyles</td><td>Southwest 0241 / 4912</td><td>ATL → OMA</td><td>Jun 19</td>
+                <td>8:20 pm</td><td>11:00 pm</td>
+                <td><a class="status-badge" href="https://flightaware.com/live/flight/SWA241/history/20260619" target="_blank" rel="noopener">⋯ Scheduled</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="flight-footnote">
+          Anna's family flies home Jun 18 (disembark day) from MIA.
+          All other groups fly Jun 19.
+          Dad travels ATL ↔ MIA only, with Mandy's group.
+          Status badges link to FlightAware for live tracking.
+        </p>
+        <p style="text-align:right; margin-top:0.6rem;">
+          <a href="https://docs.google.com/document/d/11_uaSW7hk20S5GHTFBiL07ClapBcBtBQV114gIR30ak/edit"
+             target="_blank"
+             style="font-size:0.78rem; color:var(--ocean); text-decoration:none; font-family:'Lato',sans-serif; letter-spacing:0.03em;">
+            Confirmation details →
+          </a>
+        </p>
+
+      </div>
+    </details>
+
+    <!-- WEDDING DAY -->
+    <details>
+      <summary>💍 Wedding Day Timeline</summary>
+      <div class="section-body">
+        <p style="font-size:0.82rem; color:var(--subtle); padding-top:1rem; margin-bottom:0.5rem; font-style:italic;">Sunday, June 14 · Perfect Day at CocoCay · Sunrise 6:23 AM</p>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">6:00 AM</div><div class="tl-desc"><strong>Setup crew wakes up</strong><small>Light outfits, sunscreen, hats, décor bags</small></div></div>
+          <div class="tl-item"><div class="tl-time">6:00 AM</div><div class="tl-desc"><strong>Bride + Groom slow start</strong><small>Hair, makeup, dress steaming, suit prep</small></div></div>
+          <div class="tl-item"><div class="tl-time">6:45 AM</div><div class="tl-desc"><strong>Setup crew to gangway</strong><small>Wait near exit — be ready to move fast</small></div></div>
+          <div class="tl-item"><div class="tl-time">7:00 AM</div><div class="tl-desc"><strong>Ship docks at CocoCay</strong></div></div>
+          <div class="tl-item"><div class="tl-time">7:10–7:20 AM</div><div class="tl-desc"><strong>Setup crew disembarks first</strong><small>Walk straight to Chill Island (~10–15 min)</small></div></div>
+          <div class="tl-item"><div class="tl-time">7:20–7:30 AM</div><div class="tl-desc"><strong>Bride + Groom + photographer disembark</strong><small>No rushing — enjoy the moment</small></div></div>
+          <div class="tl-item"><div class="tl-time">7:30–7:40 AM</div><div class="tl-desc"><strong>Setup crew stages ceremony spot</strong><small>Arch · fabric · florals · speaker · candles · bouquet</small></div></div>
+          <div class="tl-item"><div class="tl-time">7:40–8:10 AM</div><div class="tl-desc"><strong>📸 Pre-ceremony photos</strong><small>Softest light, coolest temps, fewest crowds</small></div></div>
+          <div class="tl-item highlight"><div class="tl-time">8:30–9:00 AM</div><div class="tl-desc"><strong>💍 CEREMONY</strong><small>Soft light · not too hot · not crowded</small></div></div>
+          <div class="tl-item"><div class="tl-time">9:00–9:45 AM</div><div class="tl-desc"><strong>📸 Family + group photos</strong><small>Arch · shoreline · palms · waterline</small></div></div>
+          <div class="tl-item"><div class="tl-time">10:00 AM+</div><div class="tl-desc"><strong>🎉 The rest of the day is yours</strong><small>Loungers · Oasis Lagoon · drinks · beach</small></div></div>
+          <div class="tl-item"><div class="tl-time">~8:06 PM</div><div class="tl-desc"><strong>🌇 Optional: sunset photos on deck</strong><small>Deck 12/13 · Solarium · Promenade</small></div></div>
         </div>
       </div>
-      <div class="itin-day">
-        <div class="itin-dot port"><div class="day-num">4</div><div>Jun 16</div></div>
-        <div class="itin-content">
-          <strong>🦀 Nassau, Bahamas</strong>
-          <span>7:30 AM – 5:30 PM · Explore, eat, beach, repeat</span>
+    </details>
+
+    <!-- PACKING -->
+    <details>
+      <summary>🧳 What to Pack</summary>
+      <div class="section-body">
+        <div class="pack-grid">
+          <div class="pack-col">
+            <h3>Essentials</h3>
+            <ul>
+              <li>Passport — must match booking name</li>
+              <li>SetSail Pass (printed or on phone)</li>
+              <li>Sunscreen — lots of it</li>
+              <li>Swimsuits</li>
+              <li>Casual resort wear</li>
+              <li>One nice dinner outfit</li>
+              <li>Comfortable walking shoes</li>
+              <li>Sandals / flip flops</li>
+            </ul>
+          </div>
+          <div class="pack-col">
+            <h3>Good to Have</h3>
+            <ul>
+              <li>Light layers — ship A/C is cold</li>
+              <li>Motion sickness remedies</li>
+              <li>Reusable water bottle</li>
+              <li>Waterproof bag</li>
+              <li>Camera + memory cards</li>
+              <li>Portable charger</li>
+              <li>Kids' snacks + activities</li>
+              <li>Wedding day outfit 💍</li>
+            </ul>
+          </div>
         </div>
+        <p style="font-size:0.76rem; color:var(--subtle); margin-top:1rem; font-style:italic;">Checked luggage may not reach your cabin until early evening — carry anything you need for the first afternoon.</p>
       </div>
-      <div class="itin-day">
-        <div class="itin-dot sea"><div class="day-num">5</div><div>Jun 17</div></div>
-        <div class="itin-content">
-          <strong>🌊 Day at Sea</strong>
-          <span>One more day of pure relaxation before heading home</span>
-        </div>
-      </div>
-      <div class="itin-day">
-        <div class="itin-dot arrive"><div class="day-num">6</div><div>Jun 18</div></div>
-        <div class="itin-content">
-          <strong>🏠 Back to Miami</strong>
-          <span>Arrive 6:00 AM · Disembark · Fly home from FLL</span>
-        </div>
-      </div>
-    </div>
-  </div>
+    </details>
 
-  <!-- GUESTS + ROOMS -->
-  <div class="section">
-    <p class="section-label">Our Crew</p>
-    <h2>Who's Coming 🎉</h2>
-
-    <p style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--rose); margin-bottom:12px;">Adults</p>
-    <div class="guest-grid">
-      <!-- Row 1: Christine, Mandy, Karyn, Manzel -->
-      <div class="guest-card"><div class="guest-avatar">👰</div><div class="guest-name">Christine</div><div class="guest-role">Bride</div></div>
-      <div class="guest-card"><div class="guest-avatar">👩</div><div class="guest-name">Mandy</div><div class="guest-role">Auntie</div></div>
-      <div class="guest-card"><div class="guest-avatar">👩</div><div class="guest-name">Karyn</div><div class="guest-role">Mom</div></div>
-      <div class="guest-card"><div class="guest-avatar">👨</div><div class="guest-name">Manzel</div><div class="guest-role">Dad</div></div>
-      <!-- Row 2: Michael, Anna, blank, blank -->
-      <div class="guest-card"><div class="guest-avatar">🤵</div><div class="guest-name">Michael Sr.</div><div class="guest-role">Groom</div></div>
-      <div class="guest-card"><div class="guest-avatar">👩</div><div class="guest-name">Anna</div><div class="guest-role">Auntie</div></div>
-      <div></div><div></div>
-    </div>
-
-    <p style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--rose); margin-top:24px; margin-bottom:12px;">Kids 🌊</p>
-    <!-- 4 cols: col1=Christine's | col2=Michael's | col3=Anna's | col4=Mandy's -->
-    <div class="kid-grid">
-
-      <!-- ROW 1 -->
-      <!-- Lainey (Christine, girl) -->
-      <div class="guest-card"><div class="kid-avatar"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kA" cx="50%" cy="75%" r="80%"><stop offset="0%" stop-color="#FF6B35"/><stop offset="55%" stop-color="#FF9F5B"/><stop offset="100%" stop-color="#FFD166"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kA)"/><circle cx="28" cy="36" r="11" fill="#FFE066" opacity="0.3"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><line x1="28" y1="9" x2="19" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="9" x2="37" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M17 15 Q21 22 28 20 Q35 22 39 15Z" fill="white"/><circle cx="28" cy="15" r="2" fill="#FFD166"/><line x1="17" y1="17" x2="12" y2="15" stroke="white" stroke-width="1.2" stroke-linecap="round"/><line x1="39" y1="17" x2="44" y2="15" stroke="white" stroke-width="1.2" stroke-linecap="round"/><path d="M19 29 Q28 26 37 29 Q37 35 28 36 Q19 35 19 29Z" fill="white"/><rect x="19" y="28" width="18" height="2.5" rx="1.25" fill="#FFD166"/><line x1="19" y1="30" x2="13" y2="28" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="37" y1="30" x2="43" y2="28" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="guest-name">Lainey</div></div>
-
-      <!-- Michael Jr (Michael, boy) -->
-      <div class="guest-card"><div class="kid-avatar"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kD" cx="50%" cy="40%" r="80%"><stop offset="0%" stop-color="#FFD166"/><stop offset="50%" stop-color="#FF9F5B"/><stop offset="100%" stop-color="#C05A20"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kD)"/><circle cx="28" cy="32" r="11" fill="#FFE066" opacity="0.28"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><rect x="17" y="13" width="22" height="5" rx="2.5" fill="#FFD166"/><path d="M17 17 L18 36 L25 36 L28 24 L31 36 L38 36 L39 17Z" fill="white"/><rect x="17" y="17" width="4.5" height="19" rx="2" fill="#FFD166" opacity="0.6"/><rect x="34.5" y="17" width="4.5" height="19" rx="2" fill="#FFD166" opacity="0.6"/><line x1="28" y1="18" x2="28" y2="36" stroke="#FFD166" stroke-width="1.2" opacity="0.5"/></svg></div><div class="guest-name">Michael Jr.</div></div>
-
-      <!-- Joshua (Anna, boy) -->
-      <div class="guest-card"><div class="kid-avatar"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kE" cx="35%" cy="60%" r="80%"><stop offset="0%" stop-color="#FFD166"/><stop offset="45%" stop-color="#FF7B54"/><stop offset="100%" stop-color="#D94F8A"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kE)"/><circle cx="36" cy="30" r="10" fill="#FFE066" opacity="0.28"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><rect x="17" y="13" width="22" height="5" rx="2.5" fill="#FFD166"/><path d="M17 17 L18 36 L25 36 L28 24 L31 36 L38 36 L39 17Z" fill="white"/><rect x="17" y="17" width="4.5" height="19" rx="2" fill="#FFD166" opacity="0.6"/><rect x="34.5" y="17" width="4.5" height="19" rx="2" fill="#FFD166" opacity="0.6"/><line x1="28" y1="18" x2="28" y2="36" stroke="#FFD166" stroke-width="1.2" opacity="0.5"/></svg></div><div class="guest-name">Joshua</div></div>
-
-      <!-- Millie (Mandy, girl) -->
-      <div class="guest-card"><div class="kid-avatar"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kG" cx="55%" cy="45%" r="80%"><stop offset="0%" stop-color="#C0425C"/><stop offset="50%" stop-color="#FF7B54"/><stop offset="100%" stop-color="#FFD166"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kG)"/><circle cx="20" cy="32" r="10" fill="#FFE066" opacity="0.3"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><line x1="28" y1="9" x2="19" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="9" x2="37" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M17 15 Q21 22 28 20 Q35 22 39 15Z" fill="white"/><circle cx="28" cy="15" r="2" fill="#FFD166"/><line x1="17" y1="17" x2="12" y2="15" stroke="white" stroke-width="1.2" stroke-linecap="round"/><line x1="39" y1="17" x2="44" y2="15" stroke="white" stroke-width="1.2" stroke-linecap="round"/><path d="M19 29 Q28 26 37 29 Q37 35 28 36 Q19 35 19 29Z" fill="white"/><rect x="19" y="28" width="18" height="2.5" rx="1.25" fill="#FFD166"/><line x1="19" y1="30" x2="13" y2="28" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="37" y1="30" x2="43" y2="28" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="guest-name">Millie</div></div>
-
-      <!-- ROW 2 -->
-      <!-- Lily (Christine, girl) -->
-      <div class="guest-card"><div class="kid-avatar"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kB" cx="40%" cy="65%" r="80%"><stop offset="0%" stop-color="#D94F8A"/><stop offset="55%" stop-color="#FF7B54"/><stop offset="100%" stop-color="#FFD166"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kB)"/><circle cx="32" cy="34" r="10" fill="#FFE066" opacity="0.3"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><line x1="28" y1="9" x2="19" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="9" x2="37" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M17 15 Q21 22 28 20 Q35 22 39 15Z" fill="white"/><circle cx="28" cy="15" r="2" fill="#FFD166"/><line x1="17" y1="17" x2="12" y2="15" stroke="white" stroke-width="1.2" stroke-linecap="round"/><line x1="39" y1="17" x2="44" y2="15" stroke="white" stroke-width="1.2" stroke-linecap="round"/><path d="M19 29 Q28 26 37 29 Q37 35 28 36 Q19 35 19 29Z" fill="white"/><rect x="19" y="28" width="18" height="2.5" rx="1.25" fill="#FFD166"/><line x1="19" y1="30" x2="13" y2="28" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="37" y1="30" x2="43" y2="28" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="guest-name">Lily</div></div>
-      <div></div><!-- Michael col: only 1 kid -->
-      <!-- Trinity (Anna, girl) -->
-      <div class="guest-card"><div class="kid-avatar"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kF" cx="50%" cy="70%" r="80%"><stop offset="0%" stop-color="#FF9F5B"/><stop offset="45%" stop-color="#FFD166"/><stop offset="100%" stop-color="#FF6B35"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kF)"/><circle cx="28" cy="26" r="12" fill="#FFE066" opacity="0.28"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><line x1="28" y1="9" x2="19" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="9" x2="37" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M17 15 Q21 22 28 20 Q35 22 39 15Z" fill="white"/><circle cx="28" cy="15" r="2" fill="#FFD166"/><line x1="17" y1="17" x2="12" y2="15" stroke="white" stroke-width="1.2" stroke-linecap="round"/><line x1="39" y1="17" x2="44" y2="15" stroke="white" stroke-width="1.2" stroke-linecap="round"/><path d="M19 29 Q28 26 37 29 Q37 35 28 36 Q19 35 19 29Z" fill="white"/><rect x="19" y="28" width="18" height="2.5" rx="1.25" fill="#FFD166"/><line x1="19" y1="30" x2="13" y2="28" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="37" y1="30" x2="43" y2="28" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="guest-name">Trinity</div></div>
-      <div></div><!-- Mandy col: only 1 kid -->
-
-      <!-- ROW 3 -->
-      <!-- Rori (Christine, girl) -->
-      <div class="guest-card"><div class="kid-avatar"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="kC" cx="60%" cy="55%" r="80%"><stop offset="0%" stop-color="#FF9F5B"/><stop offset="50%" stop-color="#FF6B35"/><stop offset="100%" stop-color="#C0425C"/></radialGradient></defs><circle cx="28" cy="28" r="28" fill="url(#kC)"/><circle cx="22" cy="38" r="10" fill="#FFE066" opacity="0.3"/><path d="M0 40 Q7 36 14 40 Q21 44 28 40 Q35 36 42 40 Q49 44 56 40 L56 56 L0 56Z" fill="#2A6F8A" opacity="0.6"/><path d="M0 47 Q7 43 14 47 Q21 51 28 47 Q35 43 42 47 Q49 51 56 47 L56 56 L0 56Z" fill="#5B9BB5" opacity="0.45"/><line x1="28" y1="9" x2="19" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="9" x2="37" y2="15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M17 15 Q21 22 28 20 Q35 22 39 15Z" fill="white"/><circle cx="28" cy="15" r="2" fill="#FFD166"/><line x1="17" y1="17" x2="12" y2="15" stroke="white" stroke-width="1.2" stroke-linecap="round"/><line x1="39" y1="17" x2="44" y2="15" stroke="white" stroke-width="1.2" stroke-linecap="round"/><path d="M19 29 Q28 26 37 29 Q37 35 28 36 Q19 35 19 29Z" fill="white"/><rect x="19" y="28" width="18" height="2.5" rx="1.25" fill="#FFD166"/><line x1="19" y1="30" x2="13" y2="28" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="37" y1="30" x2="43" y2="28" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="guest-name">Rori</div></div>
-      <div></div><div></div><div></div>
-
-    </div>
-
-    <h2 style="margin-top:36px;">Room Assignments 🛏️</h2>
-    <div class="rooms-grid">
-      <div class="room-card">
-        <div class="room-num">Room A</div>
-        <p>Christine<br>Lainey</p>
-      </div>
-      <div class="room-card">
-        <div class="room-num">Room B</div>
-        <p>Michael Bailey<br><em style="font-size:12px;color:var(--muted)">+ 1 slot open</em></p>
-      </div>
-      <div class="room-card">
-        <div class="room-num">Room C</div>
-        <p>Dad (Manzel)<br>Michael Jr.</p>
-      </div>
-      <div class="room-card">
-        <div class="room-num">Room D</div>
-        <p>Mom (Karyn)<br>Lily</p>
-      </div>
-      <div class="room-card">
-        <div class="room-num">Room E</div>
-        <p>Mandy<br>Millie</p>
-      </div>
-      <div class="room-card">
-        <div class="room-num">Room F</div>
-        <p>Anna<br>Rori · Joshua · Trinity</p>
-      </div>
-    </div>
-    <p style="font-size:12px; color:var(--muted); margin-top:12px;">* Cabin numbers assigned at check-in · All oceanview rooms</p>
-  </div>
-
-  <!-- FLIGHTS -->
-  <div class="section">
-    <p class="section-label">Getting There</p>
-    <h2>Flights ✈️</h2>
-    <p class="flight-section-header">🛬 Arriving — Into Fort Lauderdale (FLL)</p>
-    <table class="flight-table">
-      <tr>
-        <th>Flight</th>
-        <th>Route</th>
-        <th>Date</th>
-        <th>Times</th>
-        <th>Who</th>
-      </tr>
-      <tr>
-        <td>Allegiant 3471</td>
-        <td>RFD → FLL</td>
-        <td>June 11</td>
-        <td>11:37 PM → 3:35 PM</td>
-        <td>Christine + 3<br>Michael Sr. + 1<br>Karyn</td>
-      </tr>
-      <tr>
-        <td>Alaska 516</td>
-        <td>SEA → FLL</td>
-        <td>June 12</td>
-        <td>8:00 AM → 5:48 PM</td>
-        <td>Anna · Joshua · Trinity</td>
-      </tr>
-      <tr>
-        <td><em style="color:var(--muted)">TBD</em></td>
-        <td>OMA → ATL → FLL</td>
-        <td>TBD</td>
-        <td>TBD</td>
-        <td>Mandy · Millie<br>+ overnight ATL with Manzel</td>
-      </tr>
-    </table>
-
-    <p class="flight-section-header">🛫 Departing — Out of Fort Lauderdale (FLL) · Friday June 19</p>
-    <table class="flight-table">
-      <tr>
-        <th>Flight</th>
-        <th>Route</th>
-        <th>Date</th>
-        <th>Times</th>
-        <th>Who</th>
-      </tr>
-      <tr>
-        <td>Allegiant 2123</td>
-        <td>FLL → CID</td>
-        <td>June 19</td>
-        <td>2:54 PM → 5:09 PM</td>
-        <td>Christine + 3<br>Michael Sr. + 1<br>Karyn</td>
-      </tr>
-      <tr>
-        <td>Alaska 517</td>
-        <td>FLL → SEA</td>
-        <td>June 19</td>
-        <td>6:48 PM → 10:20 PM</td>
-        <td>Anna · Joshua · Trinity</td>
-      </tr>
-      <tr>
-        <td><em style="color:var(--muted)">TBD</em></td>
-        <td>FLL → ATL → OMA</td>
-        <td>TBD</td>
-        <td>TBD</td>
-        <td>Mandy · Millie · Manzel</td>
-      </tr>
-    </table>
-    <p style="font-size:12px; color:var(--muted); margin-top:10px;">📍 Fort Lauderdale lodgings — details coming soon!</p>
-  </div>
-
-  <!-- WEDDING DAY TIMELINE -->
-  <div class="section">
-    <p class="section-label">The Main Event</p>
-    <h2>Wedding Day Timeline 💍</h2>
-    <p style="font-size:14px; color:var(--muted); margin-bottom:24px;">Sunday, June 14 · Perfect Day at CocoCay · Sunrise 6:23 AM</p>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-time">6:00 AM</div>
-        <div class="tl-desc"><strong>Setup crew wakes up</strong><small>Light outfits, sunscreen, hats, décor bags</small></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-time">6:00 AM</div>
-        <div class="tl-desc"><strong>Bride + Groom slow start</strong><small>Hair, makeup, dress steaming, suit prep</small></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-time">6:45 AM</div>
-        <div class="tl-desc"><strong>Setup crew to gangway</strong><small>Wait near exit — be ready to move fast</small></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-time">7:00 AM</div>
-        <div class="tl-desc"><strong>Ship docks at CocoCay</strong></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-time">7:10–7:20 AM</div>
-        <div class="tl-desc"><strong>Setup crew disembarks first</strong><small>Walk straight to Chill Island (~10–15 min)</small></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-time">7:20–7:30 AM</div>
-        <div class="tl-desc"><strong>Bride + Groom + photographer disembark</strong><small>No rushing — enjoy the moment</small></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-time">7:30–7:40 AM</div>
-        <div class="tl-desc"><strong>Setup crew stages the ceremony spot</strong><small>Arch · fabric · florals · speaker · candles · bouquet</small></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-time">7:40–8:10 AM</div>
-        <div class="tl-desc"><strong>📸 Pre-ceremony photo session</strong><small>Softest light, coolest temps, fewest crowds — pure magic</small></div>
-      </div>
-      <div class="tl-item highlight">
-        <div class="tl-time">8:30–9:00 AM</div>
-        <div class="tl-desc"><strong>💍 CEREMONY</strong><small>Still soft light · Not too hot · Not crowded</small></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-time">9:00–9:45 AM</div>
-        <div class="tl-desc"><strong>📸 Family + group photos</strong><small>Arch · shoreline · palms · waterline</small></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-time">10:00 AM+</div>
-        <div class="tl-desc"><strong>🎉 The rest of the day is yours!</strong><small>Loungers · Oasis Lagoon · drinks · snacks · beach bliss</small></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-time">~8:06 PM</div>
-        <div class="tl-desc"><strong>🌇 Optional: sunset photos on deck</strong><small>Deck 12/13 · Solarium · Promenade</small></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PACKING -->
-  <div class="section">
-    <p class="section-label">Don't Forget</p>
-    <h2>What to Pack 🧳</h2>
-    <div class="pack-grid">
-      <div class="pack-col">
-        <h3>Essentials</h3>
-        <ul>
-          <li>Passport (required!)</li>
-          <li>Boarding documents</li>
-          <li>Sunscreen (lots of it)</li>
-          <li>Swimsuits</li>
-          <li>Casual resort wear</li>
-          <li>One nice dinner outfit</li>
-          <li>Comfortable walking shoes</li>
-          <li>Sandals / flip flops</li>
+    <!-- WEDDING PREP CHECKLIST -->
+    <details>
+      <summary>✅ Wedding Prep Checklist</summary>
+      <div class="section-body">
+        <ul class="checklist">
+          <li class="done">Secure venue and date</li>
+          <li>Book ceremony décor / florals</li>
+          <li>Finalize photography plan</li>
+          <li>Confirm officiant</li>
+          <li>Order / pack wedding dress</li>
+          <li>Plan vows</li>
+          <li>Book Fort Lauderdale lodging</li>
+          <li>Soda packages for kids</li>
+          <li>On-cruise dinner reservations</li>
+          <li>Shore excursions for Nassau</li>
         </ul>
       </div>
-      <div class="pack-col">
-        <h3>Good to Have</h3>
-        <ul>
-          <li>Light layers (ship A/C is cold!)</li>
-          <li>Motion sickness remedies</li>
-          <li>Reusable water bottle</li>
-          <li>Waterproof bag</li>
-          <li>Camera / memory cards</li>
-          <li>Portable charger</li>
-          <li>Kids' snacks + activities</li>
-          <li>Wedding day outfit 💍</li>
-        </ul>
-      </div>
+    </details>
+
+    <!-- EMBARKATION DAY LINK -->
+    <div class="doc-link-block" style="margin-top:1.5rem; background: linear-gradient(135deg, #EAF4F9 0%, #D4EAF5 100%); border-color: #b0d4e3;">
+      <p style="font-size:0.88rem; color:var(--body);">Logistics for getting from hotel to port — transport, timeline, and what to carry on.</p>
+      <a class="doc-btn" href="embarkation-day.html" style="background:var(--ocean);">
+        🚢 Embarkation Day →
+      </a>
     </div>
-  </div>
 
-  <!-- CHECKLIST (for Christine) -->
-  <div class="section">
-    <p class="section-label">For Christine</p>
-    <h2>Wedding Prep Checklist ✅</h2>
-    <ul class="checklist">
-      <li class="done">Secure venue and date</li>
-      <li>Book ceremony décor / florals</li>
-      <li>Finalize photography plan</li>
-      <li>Confirm officiant</li>
-      <li>Order / pack wedding dress</li>
-      <li>Plan vows</li>
-      <li>Book Fort Lauderdale lodging</li>
-      <li>Soda packages for kids?</li>
-      <li>On-cruise dinner reservations</li>
-      <li>Shore excursions for Nassau</li>
-    </ul>
-  </div>
+    <!-- GOOGLE DOC LINK -->
+    <div class="doc-link-block">
+      <p>Booking numbers, confirmation codes, payment details, and the full planning checklist are in the private planning document.</p>
+      <a class="doc-btn" href="https://docs.google.com/document/d/11_uaSW7hk20S5GHTFBiL07ClapBcBtBQV114gIR30ak/edit" target="_blank" rel="noopener">
+        📋 Planning Details →
+      </a>
+      <small>Access restricted to family organizers</small>
+    </div>
 
-  <!-- ADMIN LINK -->
-  <div style="margin-top:60px; background:#f5e8eb; border-radius:14px; padding:24px; text-align:center;">
-    <p style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:10px;">For Family Organizers</p>
-    <p style="font-size:15px; color:var(--text); margin-bottom:16px;">Booking numbers, confirmation codes, payment details and expenses are in the private planning doc.</p>
-    <a href="#" style="display:inline-block; background:var(--deep-rose); color:white; text-decoration:none; padding:10px 24px; border-radius:30px; font-size:13px; font-weight:500; letter-spacing:0.5px;">📋 View Planning Details (Google Doc)</a>
-    <p style="font-size:11px; color:var(--muted); margin-top:10px;">Access restricted to approved family members</p>
-  </div>
+  </main>
 
-</div>
-
-<footer>
-  Made with 💗 for <span>Christine & Michael</span> · June 2026
-</footer>
+  <footer>
+    <a href="index.html">← Berlin Family Vacation</a>
+    &nbsp;·&nbsp; Made with 💗 for Christine &amp; Michael · June 2026
+  </footer>
 
 </body>
 </html>
