@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anna's Itinerary · Paris 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:           #FDF8F2;
+      --card-bg:      #EAF0F8;
+      --header-bg:    #2A5FA0;
+      --accent-royal: #2A5FA0;
+      --accent-steel: #4A6FA5;
+      --accent-light: #A8C4E0;
+      --heading:      #2D2D2D;
+      --body:         #444444;
+      --subtle:       #6B6B6B;
+      --shadow:       rgba(42, 95, 160, 0.15);
+      --radius:       14px;
+      --ivory:        #F5EFE6;
+
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--bg);
+      color: var(--body);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--header-bg);
+      color: #FDF8F2;
+      text-align: center;
+      padding: 2.5rem 1.5rem 2rem;
+      position: relative;
+    }
+    .back-link {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.5rem;
+      color: var(--accent-light);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .back-link:hover { color: #FDF8F2; }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .header-sub {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--accent-light);
+      letter-spacing: 0.06em;
+    }
+    .wave {
+      display: block;
+      width: 100%;
+      height: 36px;
+      margin-top: -1px;
+    }
+
+
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0.25rem 1.5rem 4rem;
+    }
+
+    /* PASS WINDOW NOTE */
+    .pass-note {
+      background: var(--card-bg);
+      border-left: 3px solid var(--accent-royal);
+      border-radius: var(--radius);
+      padding: 0.75rem 1.1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.83rem;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+    .pass-note strong { color: var(--heading); }
+
+    /* DAY CARDS */
+    .day-card {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0 1.1rem;
+      margin-bottom: 1rem;
+      background: var(--ivory);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 10px var(--shadow);
+      overflow: hidden;
+    }
+
+    .day-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 0.5rem;
+      text-align: center;
+      color: #FDF8F2;
+      min-height: 90px;
+    }
+    .day-label .dow {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 0.15rem;
+    }
+    .day-label .date {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.15rem;
+    }
+    .day-label .month {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+    .day-label .type-tag {
+      margin-top: 0.4rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.2);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    .day-body {
+      padding: 0.9rem 1rem 0.9rem 0;
+    }
+
+    .day-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--heading);
+      margin-bottom: 0.35rem;
+    }
+
+    .day-items {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.83rem;
+    }
+    .day-items li {
+      padding-left: 1em;
+      position: relative;
+      line-height: 1.55;
+      color: var(--body);
+    }
+    .day-items li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--accent-steel);
+      font-weight: 700;
+    }
+
+    .day-items .food {
+      color: #7A4F2A;
+    }
+    .day-items .rest {
+      color: var(--subtle);
+      font-style: italic;
+    }
+    .day-items .note {
+      color: var(--subtle);
+      font-style: italic;
+      font-size: 0.78rem;
+    }
+    .day-items .alt {
+      color: #8C7B6B;
+      font-style: italic;
+      font-size: 0.78rem;
+    }
+
+    /* Bonus ideas */
+    .bonus-block {
+      margin-top: 0.6rem;
+      padding-top: 0.5rem;
+      border-top: 1px dashed rgba(74, 111, 165, 0.3);
+    }
+    .bonus-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-steel);
+      margin-bottom: 0.25rem;
+    }
+    .day-items .bonus {
+      color: var(--accent-steel);
+      font-style: italic;
+      font-size: 0.82rem;
+    }
+    .day-items .bonus a {
+      color: var(--accent-steel);
+      border-bottom-color: var(--accent-steel);
+    }
+
+    /* Strenuous tag */
+    .effort-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0.12rem 0.45rem;
+      border-radius: 4px;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+    }
+    .effort-easy {
+      background: #EAF4EA;
+      color: #3A7A5A;
+      border: 1px solid #3A7A5A;
+    }
+    .effort-moderate {
+      background: #FFF3E0;
+      color: #B8763A;
+      border: 1px solid #B8763A;
+    }
+    .effort-strenuous {
+      background: #FAF0F2;
+      color: #C0425C;
+      border: 1px solid #C0425C;
+    }
+
+    /* Destination links */
+    .day-items a {
+      color: var(--accent-steel);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--accent-steel);
+    }
+    .day-items a:hover { color: var(--accent-royal); border-bottom-color: var(--accent-royal); }
+
+    /* Pass window highlight */
+    .pass-day .day-body {
+      border-top: 2px solid var(--accent-royal);
+    }
+
+    /* SECTION DIVIDER */
+    .section-divider {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      text-align: center;
+      margin: 1.5rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #D6C9BC;
+    }
+
+    footer {
+      background: var(--header-bg);
+      color: var(--accent-light);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--accent-light); text-decoration: none; }
+    footer a:hover { color: #FDF8F2; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="paris-2026.html" class="back-link">← Paris 2026</a>
+    <h1>Anna's Itinerary</h1>
+    <p class="header-sub">Nov 22 – Dec 1, 2026 · London + Paris</p>
+  </header>
+
+  <svg class="wave" viewBox="0 0 1440 36" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,36 L0,18 Q360,0 720,18 Q1080,36 1440,18 L1440,36 Z" fill="#2A5FA0"/>
+  </svg>
+
+
+
+  <main>
+
+    <div class="pass-note">
+      <strong>Museum Pass window: Wed Nov 25 – Sat Nov 28</strong> — 4 consecutive days. Louvre on Wednesday (least crowded weekday, closed Tuesdays). Orsay on Thursday (closed Mondays). Keeps busiest attractions on quietest days.
+    </div>
+
+    <!-- LONDON -->
+    <div class="section-divider">London</div>
+
+    <!-- Nov 22 -->
+    <div class="day-card">
+      <div class="day-label" style="background:#8C7B6B">
+        <span class="dow">Sun</span>
+        <span class="date">22</span>
+        <span class="month">Nov</span>
+        <span class="type-tag">Arrive</span>
+      </div>
+      <div class="day-body">
+        <div class="day-title">Arrive London Heathrow · 7:10 AM <span class="effort-tag effort-easy">Easy</span></div>
+        <ul class="day-items">
+          <li>Check in to hotel · rest and recover from overnight flight</li>
+          <li class="rest">Rest and recover from overnight flight · nap if needed</li>
+          <li>Afternoon: gentle walk if you feel up to it — Covent Garden or South Bank are easy and low-pressure</li>
+          <li class="food">Late afternoon: find a classic pub for an early supper · no rushing</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Nov 23 -->
+    <div class="day-card">
+      <div class="day-label" style="background:#4A6FA5">
+        <span class="dow">Mon</span>
+        <span class="date">23</span>
+        <span class="month">Nov</span>
+        <span class="type-tag">London</span>
+      </div>
+      <div class="day-body">
+        <div class="day-title">London — one full day <span class="effort-tag effort-moderate">Moderate</span></div>
+        <ul class="day-items">
+          <li>Morning: placeholder — add what interests you (National Gallery? Borough Market? A walk along the Thames?)</li>
+          <li class="rest">Lunch break somewhere you can sit and watch people</li>
+          <li>Afternoon: placeholder — keep it light, you're heading to Paris tomorrow</li>
+          <li class="food">Dinner near hotel · early night</li>
+          <li class="note">Meet up with Mom + Marlene here if timing works</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TRANSIT -->
+    <div class="section-divider">Eurostar → Paris</div>
+
+    <!-- Nov 23/24 -->
+    <div class="day-card">
+      <div class="day-label" style="background:#6B7B8E">
+        <span class="dow">Mon/Tue</span>
+        <span class="date">23–24</span>
+        <span class="month">Nov</span>
+        <span class="type-tag">Travel</span>
+      </div>
+      <div class="day-body">
+        <div class="day-title">Eurostar · London St Pancras → Paris Gare du Nord <span class="effort-tag effort-easy">Easy</span></div>
+        <ul class="day-items">
+          <li>Depart St Pancras · arrive Paris ~2.5 hrs later · time TBD once booked</li>
+          <li>Check in to apartment from 3 PM · Rue Croix des Petits Champs</li>
+          <li class="food">Evening: pick up bread, cheese, and wine from a nearby shop · eat in</li>
+          <li class="note">Mandy + Millie arrive today as well</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PARIS -->
+    <div class="section-divider">Paris</div>
+
+    <!-- Nov 24 -->
+    <div class="day-card">
+      <div class="day-label" style="background:#4A6FA5">
+        <span class="dow">Tue</span>
+        <span class="date">24</span>
+        <span class="month">Nov</span>
+        <span class="type-tag">Arrive / Wander</span>
+      </div>
+      <div class="day-body">
+        <div class="day-title">Arrival Day · No Plans <span class="effort-tag effort-easy">Easy</span></div>
+        <ul class="day-items">
+          <li>Check in from 3 PM · unpack · breathe</li>
+          <li>Wander the Palais Royal gardens — literally outside the front door</li>
+          <li class="food"><a href="https://maps.google.com/?q=51+Galerie+de+Montpensier,+75001+Paris" target="_blank">Café Kitsuné</a> · <a href="https://maps.google.com/?q=Place+du+Palais+Royal,+75001+Paris" target="_blank">Palais Royal garden</a></li>
+          <li>Stroll toward the Seine if energy allows · no agenda</li>
+          <li class="food">Dinner: find a bistro nearby · nothing fancy · people-watch</li>
+          <li class="rest">Early night</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Nov 25 — PASS DAY 1 -->
+    <div class="day-card pass-day">
+      <div class="day-label" style="background:#2A5FA0">
+        <span class="dow">Wed</span>
+        <span class="date">25</span>
+        <span class="month">Nov</span>
+        <span class="type-tag">Pass Day 1 · Montmartre</span>
+      </div>
+      <div class="day-body">
+        <div class="day-title">The Louvre · Early Morning · Montmartre Evening <span class="effort-tag effort-moderate">Moderate</span></div>
+        <ul class="day-items">
+          <li>Arrive at opening (9 AM) · head straight for the Mona Lisa before crowds build, then explore at your own pace</li>
+          <li>Allow 2.5–3 hrs · don't try to see everything</li>
+          <li class="food">Late morning: café break in the Tuileries · sit, rest feet</li>
+          <li class="rest">Early afternoon: home · nap before evening</li>
+          <li>Late afternoon: metro to Abbesses · walk up the hill to Sacré-Cœur · soak in the view over Paris at dusk</li>
+          <li><a href="https://maps.google.com/?q=Place+du+Tertre,+75018+Paris" target="_blank">Place du Tertre</a> · artist studios</li>
+          <li>Moulin Rouge area · the boulevard and the building are worth seeing without a show</li>
+          <li class="food">Dinner in Montmartre · find a quiet side-street bistro · this is the neighborhood for it</li>
+          <li class="note">Metro home from Blanche or Pigalle — quick ride back</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Nov 26 — PASS DAY 2 -->
+    <div class="day-card pass-day">
+      <div class="day-label" style="background:#2A5FA0">
+        <span class="dow">Thu</span>
+        <span class="date">26</span>
+        <span class="month">Nov</span>
+        <span class="type-tag">Pass Day 2</span>
+      </div>
+      <div class="day-body">
+        <div class="day-title">Musée d'Orsay · Impressionism <span class="effort-tag effort-easy">Easy</span></div>
+        <ul class="day-items">
+          <li>Morning: Musée d'Orsay — Monet, Degas, Van Gogh, Renoir · allow 2.5 hrs · the building itself is stunning</li>
+          <li class="food">Lunch at the Orsay café · Seine views</li>
+          <li>Afternoon: Tuileries garden · Orangerie if energy allows (Monet's Water Lilies · covered by pass · ~45 min)</li>
+          <li class="rest">Home by 4–5 PM · rest feet</li>
+          <li class="food">Evening: pastries from <a href="https://maps.google.com/?q=51+Rue+Montorgueil,+75002+Paris" target="_blank">Stohrer</a> or a nearby boulangerie · eat in</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Nov 27 — PASS DAY 3 / EIFFEL EVENING -->
+    <div class="day-card pass-day">
+      <div class="day-label" style="background:#2A5FA0">
+        <span class="dow">Fri</span>
+        <span class="date">27</span>
+        <span class="month">Nov</span>
+        <span class="type-tag">Pass Day 3 · Tower</span>
+      </div>
+      <div class="day-body">
+        <div class="day-title">Easy Day · Eiffel Tower at Dusk <span class="effort-tag effort-easy">Easy</span></div>
+        <ul class="day-items">
+          <li>Morning: slow start · coffee and pastry at home or <a href="https://maps.google.com/?q=5+Rue+Villedo,+75001+Paris" target="_blank">Télescope</a> · no rush</li>
+          <li>Late morning: <a href="https://maps.google.com/?q=8+Boulevard+du+Palais,+75001+Paris" target="_blank">Sainte-Chapelle</a> (covered by pass · 45 min · stunning stained glass) · on Île de la Cité near Notre-Dame</li>
+          <li class="food">Lunch: grab something from Rue Montorgueil · eat outside or take back to the apartment</li>
+          <li class="rest">Afternoon: nap · rest feet · save energy for the evening</li>
+          <li>Dusk (~5 PM): Eiffel Tower · elevator to summit · stay for the 9 PM light show if you're not too tired</li>
+          <li class="food">Late dinner near the tower or back in the 1st arr</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Nov 28 — PASS DAY 4 -->
+    <div class="day-card pass-day">
+      <div class="day-label" style="background:#2A5FA0">
+        <span class="dow">Sat</span>
+        <span class="date">28</span>
+        <span class="month">Nov</span>
+        <span class="type-tag">Pass Day 4</span>
+      </div>
+      <div class="day-body">
+        <div class="day-title">Fontainebleau Day Trip <span class="effort-tag effort-moderate">Moderate</span></div>
+        <ul class="day-items">
+          <li>Train from Gare de Lyon · ~40 min · depart mid-morning</li>
+          <li><a href="https://maps.google.com/?q=Chateau+de+Fontainebleau,+77300+Fontainebleau" target="_blank">Château de Fontainebleau</a> · stunning royal apartments · far fewer crowds than Versailles · allow 2 hrs inside</li>
+          <li class="food">Lunch in Fontainebleau town</li>
+          <li>Short walk in the forest if feet allow · or sit by the château gardens</li>
+          <li>Back to Paris by late afternoon</li>
+          <li class="food">Dinner in or a nearby bistro</li>
+          <li class="alt">Alternative: Versailles instead if the group prefers · same train line · longer day</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Nov 29 — Latin Quarter / Marais -->
+    <div class="day-card">
+      <div class="day-label" style="background:#4A6FA5">
+        <span class="dow">Sun</span>
+        <span class="date">29</span>
+        <span class="month">Nov</span>
+        <span class="type-tag">Day Trip</span>
+      </div>
+      <div class="day-body">
+        <div class="day-title">Bruges Day Trip <span style="font-weight:400;font-size:0.85rem;">(Anna + Mandy)</span> <span class="effort-tag effort-easy">Easy</span></div>
+        <ul class="day-items">
+          <li>Early train from Gare du Nord → Brussels → Bruges · arrive ~10 AM · mostly sitting — good rest for the feet</li>
+          <li>Wander the medieval canals · <a href="https://maps.google.com/?q=Markt+Square,+Bruges,+Belgium" target="_blank">Markt Square</a> · chocolate shops · cobbled streets</li>
+          <li class="food">Lunch: moules-frites at a canal-side café · Belgian beer if you're up for it</li>
+          <li>Christmas Market opens this week · city is lit in the evenings</li>
+          <li class="note">Most regular shops closed Sundays · tourist shops, chocolate, and cafés all open · not a shopping day, just a wandering day</li>
+          <li>Return train · back in Paris by 8–9 PM</li>
+          <li class="food">Light supper at home</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Nov 30 — Montmartre / Bruges option -->
+    <div class="day-card">
+      <div class="day-label" style="background:#6B7B8E">
+        <span class="dow">Mon</span>
+        <span class="date">30</span>
+        <span class="month">Nov</span>
+        <span class="type-tag">Latin Quarter</span>
+      </div>
+      <div class="day-body">
+        <div class="day-title">Latin Quarter · Le Marais · Last Day <span class="effort-tag effort-moderate">Moderate</span></div>
+        <ul class="day-items">
+          <li>Morning: Latin Quarter · wander the medieval streets · <a href="https://maps.google.com/?q=37+Rue+de+la+Bûcherie,+75005+Paris" target="_blank">Shakespeare &amp; Company</a> · Notre-Dame (free reservation the evening before)</li>
+          <li class="food">Lunch: café in the Latin Quarter · croque-monsieur or a crêpe</li>
+          <li>Afternoon: Le Marais · <a href="https://maps.google.com/?q=Place+des+Vosges,+75004+Paris" target="_blank">Place des Vosges</a> · gallery windows</li>
+          <li class="food">Late afternoon: falafel on <a href="https://maps.google.com/?q=Rue+des+Rosiers,+75004+Paris" target="_blank">Rue des Rosiers</a> · legendary · very cheap · eat standing up</li>
+          <li class="rest">Home by 5–6 PM · pack · early night · checkout at 11 AM tomorrow</li>
+          <li class="food">Dinner nearby</li>
+        </ul>
+        <div class="bonus-block">
+          <div class="bonus-label">✦ Bonus ideas</div>
+          <ul class="day-items">
+            <li class="bonus"><a href="https://maps.google.com/?q=28+Rue+Du+Sommerard,+75005+Paris" target="_blank">Musée de Cluny</a> — medieval art museum · the <em>Lady and the Unicorn</em> tapestries are extraordinary · covered by Museum Pass · ~90 min · right in the Latin Quarter</li>
+            <li class="bonus"><a href="https://maps.google.com/?q=16+Rue+du+Repos,+75020+Paris" target="_blank">Père Lachaise Cemetery</a> — Chopin, Édith Piaf, Oscar Wilde · beautiful and atmospheric · metro from the Marais · ~1.5 hrs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dec 1 — Departure -->
+    <div class="day-card">
+      <div class="day-label" style="background:#8C7B6B">
+        <span class="dow">Tue</span>
+        <span class="date">1</span>
+        <span class="month">Dec</span>
+        <span class="type-tag">Departure</span>
+      </div>
+      <div class="day-body">
+        <div class="day-title">Checkout · Fly Home <span class="effort-tag effort-easy">Easy</span></div>
+        <ul class="day-items">
+          <li>Apartment checkout by 11 AM</li>
+          <li class="food">Coffee and croissant before leaving</li>
+          <li>CDG departure: AA 7220 departs 11:30 AM · transfer LHR · arrive SEA 4:55 PM</li>
+          <li class="note">CDG is a large airport — allow extra time for the terminal walk</li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="paris-2026.html">← Back to Paris 2026</a>
+  </footer>
+
+</body>
+</html>

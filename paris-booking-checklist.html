@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Booking Checklist · Paris 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:           #FDF8F2;
+      --card-bg:      #EAF0F8;
+      --header-bg:    #2A5FA0;
+      --accent-light: #A8C4E0;
+      --heading:      #2D2D2D;
+      --body:         #444444;
+      --subtle:       #6B6B6B;
+      --shadow:       rgba(42, 95, 160, 0.15);
+      --border:       rgba(42, 95, 160, 0.15);
+      --radius:       14px;
+
+      /* Status palette */
+      --s-done:      #4A6FA5;   /* steel blue — all finished */
+      --s-upcoming:  #8C7B6B;   /* warm taupe — on track, no action yet */
+      --s-soon:      #B8763A;   /* amber — window opening soon */
+      --s-now:       #C25B3A;   /* deep coral — book now */
+      --s-overdue:   #7A2035;   /* dark burgundy — missed window */
+      --s-flexible:  #9E9488;   /* grey-brown — no urgency */
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--bg);
+      color: var(--body);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--header-bg);
+      color: #FDF8F2;
+      text-align: center;
+      padding: 2.5rem 1.5rem 2rem;
+      position: relative;
+    }
+    .back-link {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.5rem;
+      color: var(--accent-light);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .back-link:hover, .back-link:focus-visible {
+      color: #FDF8F2;
+      outline: 2px solid var(--accent-light);
+      outline-offset: 4px;
+      border-radius: 3px;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .header-sub {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--accent-light);
+      letter-spacing: 0.06em;
+    }
+    .wave {
+      display: block;
+      width: 100%;
+      height: 36px;
+      margin-top: -1px;
+    }
+
+    /* LEGEND */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+      padding: 1rem 1.5rem 0.5rem;
+      max-width: 780px;
+      margin: 0 auto;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--subtle);
+    }
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem 4rem;
+    }
+
+    .prereq-note {
+      background: var(--card-bg);
+      border-left: 3px solid var(--header-bg);
+      border-radius: var(--radius);
+      padding: 0.8rem 1.1rem;
+      margin-bottom: 1.75rem;
+      font-size: 0.84rem;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+    .prereq-note strong { color: var(--heading); }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: #D6C9BC;
+    }
+
+    .milestone {
+      position: relative;
+      margin-bottom: 1.75rem;
+    }
+    .milestone-dot {
+      position: absolute;
+      left: -2rem;
+      top: 5px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 3px solid var(--bg);
+    }
+    .milestone-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 0.3rem;
+    }
+    .milestone-date {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    /* Status classes */
+    .s-now      .milestone-dot { background: var(--s-now);      box-shadow: 0 0 0 2px var(--s-now); }
+    .s-soon     .milestone-dot { background: var(--s-soon);     box-shadow: 0 0 0 2px var(--s-soon); }
+    .s-upcoming .milestone-dot { background: var(--s-upcoming); box-shadow: 0 0 0 2px var(--s-upcoming); }
+    .s-flexible .milestone-dot { background: var(--s-flexible); box-shadow: 0 0 0 2px var(--s-flexible); }
+    .s-done     .milestone-dot { background: var(--s-done);     box-shadow: 0 0 0 2px var(--s-done); }
+    .s-overdue  .milestone-dot { background: var(--s-overdue);  box-shadow: 0 0 0 2px var(--s-overdue); }
+
+    .s-now      .milestone-date { color: var(--s-now); }
+    .s-soon     .milestone-date { color: var(--s-soon); }
+    .s-upcoming .milestone-date { color: var(--s-upcoming); }
+    .s-flexible .milestone-date { color: var(--s-flexible); }
+    .s-done     .milestone-date { color: var(--s-done); }
+    .s-overdue  .milestone-date { color: var(--s-overdue); }
+
+    /* BOOKING CARDS */
+    .booking-cards { display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .booking-card {
+      background: #F5EFE6;
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      box-shadow: 0 2px 8px var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.4rem 1rem;
+      align-items: start;
+    }
+
+    /* Card status variants */
+    .card-now     { border-left: 3px solid var(--s-now); }
+    .card-soon    { border-left: 3px solid var(--s-soon); }
+    .card-upcoming { border-left: 3px solid var(--s-upcoming); }
+    .card-flexible { border-left: 3px solid var(--s-flexible); }
+    .card-done    { border-left: 3px solid var(--s-done); background: #EBF1F8; opacity: 0.75; }
+    .card-overdue { border-left: 3px solid var(--s-overdue); background: #FAF0F2; }
+    .card-prereq  { border-left: 3px solid var(--header-bg); }
+
+    .card-done .booking-name::after {
+      content: ' ✓';
+      color: var(--s-done);
+      font-weight: 700;
+    }
+
+    .booking-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--heading);
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* Reservation required tag */
+    .res-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      background: #FFF3E0;
+      color: var(--s-soon);
+      border: 1px solid var(--s-soon);
+      border-radius: 4px;
+      padding: 0.1rem 0.4rem;
+      white-space: nowrap;
+    }
+
+    .card-done .res-tag {
+      background: #EBF1F8;
+      color: var(--s-done);
+      border-color: var(--s-done);
+    }
+
+    .booking-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--body);
+    }
+    .booking-bullets li {
+      padding-left: 1em;
+      position: relative;
+      line-height: 1.5;
+    }
+    .booking-bullets li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: #8C7B6B;
+      font-weight: 700;
+    }
+    .discount { color: #3A7A5A; }
+    .prereq-flag { color: var(--header-bg); font-style: italic; }
+
+    .cost-pill {
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: var(--card-bg);
+      color: var(--header-bg);
+      padding: 0.15rem 0.5rem;
+      border-radius: 12px;
+      display: inline-block;
+      margin-top: 0.3rem;
+    }
+
+    .booking-link {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--header-bg);
+      text-decoration: none;
+      white-space: nowrap;
+      padding-top: 0.1rem;
+    }
+    .booking-link:hover { text-decoration: underline; }
+    .booking-link.no-link { color: var(--subtle); cursor: default; }
+
+    footer {
+      background: var(--header-bg);
+      color: var(--accent-light);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--accent-light); text-decoration: none; }
+    footer a:hover { color: #FDF8F2; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="paris-2026.html" class="back-link">← Paris 2026</a>
+    <h1>Booking Checklist</h1>
+    <p class="header-sub">Anchor date: Tuesday, November 24 · Paris check-in</p>
+  </header>
+
+  <svg class="wave" viewBox="0 0 1440 36" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,36 L0,18 Q360,0 720,18 Q1080,36 1440,18 L1440,36 Z" fill="#2A5FA0"/>
+  </svg>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--s-now)"></div> Book now</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--s-overdue)"></div> Overdue</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--s-soon)"></div> Window opens soon</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--s-upcoming)"></div> Upcoming</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--s-flexible)"></div> Flexible / on arrival</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--s-done)"></div> Done</div>
+  </div>
+
+  <main>
+
+    <div class="prereq-note">
+      <strong>Before booking the Louvre or Versailles:</strong> Purchase the Museum Pass first — you need the pass serial number to reserve timed entry slots at both venues. Millie (under 18) gets free entry at all pass-covered museums but still needs a free timed reservation.
+    </div>
+
+    <div class="timeline">
+
+      <!-- NOW -->
+      <div class="milestone s-now">
+        <div class="milestone-dot"></div>
+        <div class="milestone-label">Book now · already open</div>
+        <div class="milestone-date">Now</div>
+        <div class="booking-cards">
+
+          <div class="booking-card card-now">
+            <div>
+              <div class="booking-name">Eurostar — London → Paris</div>
+              <ul class="booking-bullets">
+                <li>Gare du Nord arrival ~Nov 23–24</li>
+                <li>Prices rise as the date approaches — book once London date is confirmed</li>
+                <li class="discount">No senior or child discount in Standard class</li>
+              </ul>
+              <span class="cost-pill">from ~€52/person (~$57) one-way</span>
+            </div>
+            <a class="booking-link" href="https://www.eurostar.com" target="_blank">eurostar.com →</a>
+          </div>
+
+          <div class="booking-card card-now">
+            <div>
+              <div class="booking-name">Paris → Bruges round-trip <span style="font-weight:400;font-size:0.85rem;">(Anna + Mandy)</span></div>
+              <ul class="booking-bullets">
+                <li>Paris Gare du Nord → Brussels → Bruges, ~2.5–3 hrs total, one transfer</li>
+                <li>Book as a through-ticket; date TBD</li>
+              </ul>
+              <span class="cost-pill">from ~€33–60/person (~$36–65) each way</span>
+            </div>
+            <a class="booking-link" href="https://www.eurostar.com" target="_blank">eurostar.com →</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- BEFORE AUG 25 — Museum Pass prerequisite -->
+      <div class="milestone s-now">
+        <div class="milestone-dot"></div>
+        <div class="milestone-label">Buy before Aug 25 · prerequisite for Louvre &amp; Versailles</div>
+        <div class="milestone-date">Before Mon, Aug 25</div>
+        <div class="booking-cards">
+
+          <div class="booking-card card-prereq">
+            <div>
+              <div class="booking-name">Paris Museum Pass — 4-day × 4</div>
+              <ul class="booking-bullets">
+                <li>Covers: Louvre, Versailles, Orsay, Sainte-Chapelle, Arc de Triomphe, Orangerie, Pompidou + 50 more</li>
+                <li>Buy online to receive the serial number needed for Louvre and Versailles reservations</li>
+                <li>Share serial numbers with the group before reserving — everyone should book their Louvre and Versailles slots at the same time</li>
+                <li class="discount">Millie (under 18): free at all covered museums — no pass needed</li>
+              </ul>
+              <span class="cost-pill">~€108/person (~$118) (4-day)</span>
+            </div>
+            <a class="booking-link" href="https://www.parismuseumpass.fr/en" target="_blank">parismuseumpass.fr →</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MON AUG 25 — 90 days -->
+      <div class="milestone s-soon">
+        <div class="milestone-dot"></div>
+        <div class="milestone-label">90 days before check-in</div>
+        <div class="milestone-date">Mon, Aug 25</div>
+        <div class="booking-cards">
+
+          <div class="booking-card card-soon card-prereq">
+            <div>
+              <div class="booking-name">
+                Louvre — timed entry
+                <span class="res-tag">Reservation required</span>
+              </div>
+              <ul class="booking-bullets">
+                <li>Included with Museum Pass</li>
+                <li>Separate reservation required after purchasing pass — book immediately when window opens</li>
+                <li>Morning slots go fastest · closed Tuesdays</li>
+                <li class="discount">Millie (under 18): free — still needs a timed reservation</li>
+              </ul>
+              <span class="cost-pill">€0 with pass · €22/person (~$24) without</span>
+            </div>
+            <a class="booking-link" href="https://ticket.louvre.fr/en" target="_blank">ticket.louvre.fr →</a>
+          </div>
+
+          <div class="booking-card card-soon card-prereq">
+            <div>
+              <div class="booking-name">
+                Versailles — Passport timed entry
+                <span class="res-tag">Reservation required</span>
+              </div>
+              <ul class="booking-bullets">
+                <li>Included with Museum Pass (Palace + Trianon Estate + Gardens)</li>
+                <li>Separate reservation required after purchasing pass</li>
+                <li>Non-refundable on official site — confirm your date before booking</li>
+                <li class="discount">Millie (under 18): free — still needs a timed reservation</li>
+              </ul>
+              <span class="cost-pill">€0 with pass · ~€24/person (~$26) without</span>
+            </div>
+            <a class="booking-link" href="https://en.chateauversailles.fr" target="_blank">chateauversailles.fr →</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MON SEP 22 — 60 days -->
+      <div class="milestone s-upcoming">
+        <div class="milestone-dot"></div>
+        <div class="milestone-label">60 days before check-in</div>
+        <div class="milestone-date">Mon, Sep 22</div>
+        <div class="booking-cards">
+
+          <div class="booking-card card-upcoming">
+            <div>
+              <div class="booking-name">
+                Eiffel Tower — elevator tickets
+                <span class="res-tag">Reservation required</span>
+              </div>
+              <ul class="booking-bullets">
+                <li>Not covered by Museum Pass</li>
+                <li>Timed tickets must be reserved in advance — summit slots sell out fastest</li>
+                <li>Book as a group in one order to guarantee the same time slot — up to 9 tickets per order</li>
+                <li class="discount">Millie (under 18): ~€3.80–€18.40 (~$4–$20) depending on floor · no senior discount on official site</li>
+              </ul>
+              <span class="cost-pill">€14.80–€36.70/adult (~$16–$40) · varies by floor</span>
+            </div>
+            <a class="booking-link" href="https://ticket.toureiffel.paris/en" target="_blank">toureiffel.paris →</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DAY-OF -->
+      <div class="milestone s-flexible">
+        <div class="milestone-dot"></div>
+        <div class="milestone-label">Up to 2 days before · no advance window</div>
+        <div class="milestone-date">Day-of or day before</div>
+        <div class="booking-cards">
+
+          <div class="booking-card card-flexible">
+            <div>
+              <div class="booking-name">
+                Notre-Dame — free timed entry
+                <span class="res-tag" style="background:#F5F0EB;color:var(--s-flexible);border-color:var(--s-flexible);">Reservation recommended</span>
+              </div>
+              <ul class="booking-bullets">
+                <li>Free for all visitors</li>
+                <li>Slots release at midnight Paris time, up to 2 days ahead — book the evening before</li>
+                <li>Walk-in waits can exceed 2 hours during busy periods</li>
+                <li class="discount">Bell towers (optional, separate ticket): €16/adult · free under 18 — book separately in advance at the Centre des Monuments Nationaux</li>
+              </ul>
+              <span class="cost-pill">Free · Bell towers €16/adult (~$17)</span>
+            </div>
+            <a class="booking-link" href="https://resa.notredamedeparis.fr/en" target="_blank">notredamedeparis.fr →</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ON ARRIVAL -->
+      <div class="milestone s-flexible">
+        <div class="milestone-dot"></div>
+        <div class="milestone-label">On arrival in Paris</div>
+        <div class="milestone-date">Day 0</div>
+        <div class="booking-cards">
+
+          <div class="booking-card card-flexible">
+            <div>
+              <div class="booking-name">Navigo Découverte card</div>
+              <ul class="booking-bullets">
+                <li>Buy at any metro station ticket window — one card per person</li>
+                <li>Load with a weekly pass (Monday–Sunday) · covers all metro, bus, RER, and the Versailles train (zones 1–5)</li>
+              </ul>
+              <span class="cost-pill">~€5 card fee + ~€30/week per person (~$6 + ~$33/week)</span>
+            </div>
+            <span class="booking-link no-link">Any metro station</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <a href="paris-2026.html">← Back to Paris 2026</a>
+  </footer>
+
+</body>
+</html>
