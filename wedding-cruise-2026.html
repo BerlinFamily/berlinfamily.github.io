@@ -245,10 +245,91 @@
     .itin-dot.sea     { background: #D4EAF5; color: var(--ocean); }
     .itin-dot.port    { background: var(--barely-blush); color: var(--deep-rose); }
     .itin-dot.arrive  { background: var(--deep-rose); color: white; }
-    .itin-dot .day-n  { font-size: 1.2rem; font-weight: 700; line-height: 1; }
+    .itin-dot .day-n  { font-size: 0.72rem; font-weight: 700; line-height: 1; }
     .itin-content { padding-top: 0.9rem; }
     .itin-content strong { font-size: 1rem; font-weight: 600; color: var(--heading); display: block; }
     .itin-content span { font-size: 0.85rem; color: var(--subtle); }
+
+    /* ── DAY SUB-TIMELINE ───────────────────────────────── */
+    .day-beats {
+      list-style: none;
+      margin-top: 0.5rem;
+      padding-left: 0.1rem;
+      border-left: 2px solid var(--soft-blush);
+      margin-left: 0.25rem;
+    }
+    .day-beats li {
+      display: flex;
+      gap: 0.6rem;
+      padding: 0.22rem 0 0.22rem 0.65rem;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    .beat-time {
+      color: var(--medium-rose);
+      font-weight: 700;
+      min-width: 62px;
+      flex-shrink: 0;
+    }
+    .beat-desc { color: var(--body); }
+
+    /* ── PRE-CRUISE DATE HEADERS ────────────────────────── */
+    .pre-cruise-day {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 0.9rem 0;
+      position: relative;
+    }
+    .pre-date-label {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--barely-blush);
+      border: 2px solid var(--soft-blush);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    .pre-date-label .pre-date {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--medium-rose);
+      line-height: 1.35;
+      text-align: center;
+    }
+
+    /* ── ITINERARY DIVIDERS ─────────────────────────────── */
+    .itin-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      margin: 2px 0;
+    }
+    .itin-divider-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .itin-divider-label.miami  { color: var(--subtle); }
+    .itin-divider-label.board  { color: var(--deep-rose); }
+    .itin-divider-label.land   { color: var(--subtle); }
+    .itin-divider-line {
+      flex: 1;
+      height: 1px;
+    }
+    .itin-divider-line.left    { margin-left: 70px; }
+    .itin-divider.miami  .itin-divider-line { background: var(--border); }
+    .itin-divider.board  .itin-divider-line { background: var(--medium-rose); opacity: 0.5; }
+    .itin-divider.land   .itin-divider-line { background: var(--border); }
 
     /* ── GUESTS ─────────────────────────────────────────── */
     .guest-grid {
@@ -610,13 +691,57 @@
       <summary>Itinerary</summary>
       <div class="section-body">
         <div class="itinerary">
+
+          <!-- PRE-CRUISE: Jun 11 -->
+          <div class="itin-divider miami">
+            <div class="itin-divider-line left"></div>
+            <div class="itin-divider-label miami">Miami</div>
+            <div class="itin-divider-line"></div>
+          </div>
+          <div class="pre-cruise-day">
+            <div class="pre-date-label"><div class="pre-date">Thu<br>Jun 11</div></div>
+            <div class="itin-content">
+              <strong>✈️ Berlin + Bailey arrive · FLL</strong>
+              <ul class="day-beats">
+                <li><span class="beat-time">3:35 PM</span><span class="beat-desc">Berlin + Bailey arrive · FLL</span></li>
+                <li><span class="beat-time">3:00 PM+</span><span class="beat-desc">Check in · YotelPad Miami</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PRE-CRUISE: Jun 12 -->
+          <div class="pre-cruise-day">
+            <div class="pre-date-label"><div class="pre-date">Fri<br>Jun 12</div></div>
+            <div class="itin-content">
+              <strong>✈️ Anna's family + Mandy's group arrive</strong>
+              <ul class="day-beats">
+                <li><span class="beat-time">5:27 PM</span><span class="beat-desc">Anna's family arrive · FLL</span></li>
+                <li><span class="beat-time">8:59 PM</span><span class="beat-desc">Mandy's group arrive · MIA</span></li>
+                <li><span class="beat-time">3:00 PM+</span><span class="beat-desc">Check in · YotelPad Miami</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- CRUISE DAY 1 -->
+          <div class="itin-divider board">
+            <div class="itin-divider-line left"></div>
+            <div class="itin-divider-label board">On board</div>
+            <div class="itin-divider-line"></div>
+          </div>
           <div class="itin-day">
             <div class="itin-dot depart"><div class="day-n">1</div><div>Jun 13</div></div>
             <div class="itin-content">
               <strong>🌴 Miami, Florida</strong>
-              <span>Board ship · Depart 4:30 PM</span>
+              <span>Embarkation day · Depart 4:30 PM</span>
+              <ul class="day-beats">
+                <li><span class="beat-time">11:30 AM</span><span class="beat-desc">Depart YotelPad · Port of Miami</span></li>
+                <li><span class="beat-time">11:45 AM</span><span class="beat-desc">Arrive Port of Miami</span></li>
+                <li><span class="beat-time">12:00–12:30</span><span class="beat-desc">Boarding window</span></li>
+                <li><span class="beat-time">4:30 PM</span><span class="beat-desc">Set sail 🌊</span></li>
+              </ul>
             </div>
           </div>
+
           <div class="itin-day">
             <div class="itin-dot island"><div class="day-n">2</div><div>Jun 14</div></div>
             <div class="itin-content">
@@ -649,9 +774,32 @@
             <div class="itin-dot arrive"><div class="day-n">6</div><div>Jun 18</div></div>
             <div class="itin-content">
               <strong>🏠 Back to Miami</strong>
-              <span>Arrive 6:00 AM · Disembark · Fly home</span>
+              <span>Disembark · Fly home</span>
+              <ul class="day-beats">
+                <li><span class="beat-time">6:00 AM</span><span class="beat-desc">Arrive Port of Miami</span></li>
+                <li><span class="beat-time">6:17 PM</span><span class="beat-desc">Anna's family depart · MIA</span></li>
+              </ul>
             </div>
           </div>
+
+          <!-- POST-CRUISE: Jun 19 -->
+          <div class="itin-divider land">
+            <div class="itin-divider-line left"></div>
+            <div class="itin-divider-label land">Back on land</div>
+            <div class="itin-divider-line"></div>
+          </div>
+          <div class="pre-cruise-day">
+            <div class="pre-date-label"><div class="pre-date">Fri<br>Jun 19</div></div>
+            <div class="itin-content">
+              <strong>✈️ Remaining groups fly home</strong>
+              <ul class="day-beats">
+                <li><span class="beat-time">7:43 AM</span><span class="beat-desc">Dad + Coyles depart · MIA</span></li>
+                <li><span class="beat-time">2:54 PM</span><span class="beat-desc">Berlin + Bailey depart · FLL</span></li>
+                <li><span class="beat-time">8:20 PM</span><span class="beat-desc">Dad + Coyles depart ATL → OMA</span></li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
     </details>
