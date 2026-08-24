@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Paris 2026 · Berlin Family Vacation</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
@@ -20,6 +22,13 @@
       --shadow-hover: rgba(42, 95, 160, 0.38);
       --border:       rgba(42, 95, 160, 0.18);
       --radius:       16px;
+
+      /* Suggestion category colors */
+      --cat-dine:       #B85C3A;
+      --cat-stroll:     #3A7A5A;
+      --cat-shop:       #A8863A;
+      --cat-see:        #5B4E8A;
+      --cat-do:         #1A6B6B;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -236,7 +245,7 @@
       font-size: 0.85rem;
     }
 
-    /* ITINERARY */
+    /* ITINERARY — collapsible day tiles */
     .itinerary-list {
       padding-top: 1.25rem;
       display: flex;
@@ -244,35 +253,261 @@
       gap: 0.75rem;
     }
 
-    .itin-item {
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 1rem;
-      align-items: start;
+    .trip-section {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0.5rem 0 0.15rem;
     }
-
-    .itin-date {
+    .itinerary-list > .trip-section:first-child { margin-top: 0; }
+    .trip-section-label {
       font-family: 'Playfair Display', serif;
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 1.05rem;
+      font-weight: 700;
       color: var(--accent-royal);
-      padding-top: 0.1rem;
+      white-space: nowrap;
+    }
+    .trip-section::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
     }
 
-    .itin-desc {
-      font-size: 0.92rem;
+    .day-tile {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px var(--shadow);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .day-tile:hover,
+    .day-tile[open] {
+      box-shadow: 0 5px 18px var(--shadow-hover);
+    }
+
+    .day-tile summary {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem 1.1rem;
+      cursor: pointer;
+      list-style: none;
+      border-left: 3px solid var(--accent-royal);
+      user-select: none;
+    }
+    .day-tile summary::-webkit-details-marker { display: none; }
+    .day-tile summary:hover { background: rgba(42, 95, 160, 0.05); }
+    .day-tile summary:focus-visible {
+      outline: 2px solid var(--accent-royal);
+      outline-offset: -2px;
+    }
+    .day-tile summary::after {
+      content: '›';
+      margin-left: auto;
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--accent-steel);
+      transition: transform 0.25s ease;
+      line-height: 1;
+    }
+    .day-tile[open] summary::after { transform: rotate(90deg); }
+
+    .day-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      font-family: 'Playfair Display', serif;
+      line-height: 1.1;
+      flex-shrink: 0;
+    }
+    .day-badge .dow, .day-badge .mon {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-steel);
+    }
+    .day-badge .num {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--accent-royal);
+    }
+
+    .day-heading {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      flex: 1;
+    }
+    .day-location {
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--heading);
+    }
+    .day-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.55rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .day-tag.easy     { background: rgba(168, 196, 224, 0.45); color: var(--accent-royal); }
+    .day-tag.moderate { background: rgba(74, 111, 165, 0.28); color: var(--accent-steel); }
+
+    .day-body {
+      padding: 0 1.1rem 1.1rem;
+      border-top: 1px solid var(--border);
+    }
+    .day-body ul {
+      list-style: none;
+      padding-top: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .day-body li {
+      font-size: 0.9rem;
       color: var(--body);
       border-left: 2px solid var(--accent-light);
       padding-left: 0.9rem;
     }
 
-    .itin-desc .label {
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-steel);
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .day-body > .section-label:first-child { margin-top: 0.85rem; }
+
+    .planned-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .planned-item {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 0.9rem;
+      align-items: start;
+    }
+    .planned-time {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--accent-royal);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      text-align: right;
+      padding-top: 0.1rem;
+    }
+    .planned-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      border-left: 2px solid var(--accent-light);
+      padding-left: 0.9rem;
+    }
+    .planned-name {
       font-weight: 700;
       color: var(--heading);
+      font-size: 0.92rem;
+    }
+    .planned-address {
+      font-size: 0.72rem;
+      color: var(--subtle);
+    }
+    .planned-address a {
+      color: var(--subtle);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--subtle);
+    }
+    .planned-address a:hover { color: var(--accent-royal); }
+    .planned-desc {
+      font-size: 0.87rem;
+      color: var(--body);
+      line-height: 1.5;
     }
 
-    .itin-placeholder {
+    .suggestion-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+      gap: 0.75rem;
+    }
+    .suggestion-tile {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 3px 12px var(--shadow);
+      padding: 0.8rem 0.95rem 0.75rem;
+      border-left: 3px solid var(--tile-color, var(--accent-steel));
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .suggestion-tile:hover {
+      box-shadow: 0 6px 18px var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+    .suggestion-tag {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--tile-color, var(--accent-royal));
+    }
+    .suggestion-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--heading);
+    }
+    .suggestion-name a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: var(--accent-light);
+    }
+    .suggestion-address {
+      font-size: 0.72rem;
       color: var(--subtle);
+    }
+    .suggestion-address a {
+      color: var(--subtle);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--subtle);
+    }
+    .suggestion-address a:hover { color: var(--accent-royal); }
+    .suggestion-desc {
+      font-size: 0.83rem;
+      color: var(--body);
+      line-height: 1.5;
+    }
+    .suggestion-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.15rem;
+    }
+    .pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.15rem 0.55rem;
+      border-radius: 20px;
+      letter-spacing: 0.02em;
+    }
+    .pill-tip {
+      background: rgba(184, 92, 58, 0.09);
+      color: var(--cat-dine);
+      font-weight: 400;
       font-style: italic;
     }
 
@@ -304,7 +539,7 @@
   <header>
     <a href="index.html" class="back-link">← All Trips</a>
     <h1>Paris 2026</h1>
-    <p class="header-meta">November 22 – December 1, 2026 &nbsp;·&nbsp; Paris, France</p>
+    <p class="header-meta">November 21 – December 1, 2026 &nbsp;·&nbsp; London &amp; Paris</p>
   </header>
 
   <svg class="wave" viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -384,6 +619,20 @@
             <div class="guest-name">Mandy</div>
           </div>
 
+          <!-- Millie — camera, film-strip style -->
+          <div class="guest-card">
+            <div class="guest-icon">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#2A5FA0" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="14" y="34" width="72" height="52" rx="8" stroke-width="2.5" fill="#EAF0F8"/>
+                <path d="M38,34 L44,24 L56,24 L62,34" stroke-width="2.5"/>
+                <circle cx="50" cy="60" r="16" stroke-width="2.5" fill="#fff"/>
+                <circle cx="50" cy="60" r="8" stroke-width="2" fill="#A8C4E0" fill-opacity="0.5"/>
+                <circle cx="72" cy="44" r="3" fill="#2A5FA0" stroke="none"/>
+              </svg>
+            </div>
+            <div class="guest-name">Millie</div>
+          </div>
+
         </div>
       </div>
     </details>
@@ -412,16 +661,16 @@
                 <td>AA 6909 · dep 1:35 PM · arr 7:10 AM (+1)</td>
               </tr>
               <tr>
-                <td>Karyn &amp; Marlene</td>
-                <td>CID → LHR</td>
-                <td class="pending">TBC</td>
-                <td class="pending">Details pending</td>
+                <td>Mandy &amp; Millie</td>
+                <td>OMA → LHR</td>
+                <td>Sat, Nov 21</td>
+                <td>UA 920 · dep 1:08 PM · arr 7:55 AM (+1)</td>
               </tr>
               <tr>
-                <td>Mandy</td>
-                <td>OMA → ?</td>
-                <td class="pending">TBC</td>
-                <td class="pending">Details pending</td>
+                <td>Karyn &amp; Marlene</td>
+                <td>DUB → CDG</td>
+                <td>Mon, Nov 23</td>
+                <td>EI 0524 · dep 9:50 AM · arr 12:35 PM<br/><small style="color:var(--subtle)">Arriving via Dublin after their own England tour, joining directly in Paris</small></td>
               </tr>
             </tbody>
           </table>
@@ -447,15 +696,15 @@
               </tr>
               <tr>
                 <td>Karyn &amp; Marlene</td>
-                <td>LHR → CID</td>
-                <td class="pending">TBC</td>
-                <td class="pending">Details pending</td>
+                <td>CDG → CID (via ORD)</td>
+                <td>Tue, Dec 1</td>
+                <td>UA 0986 · dep 11:55 AM · UA 4588 · arr CID 7:12 PM</td>
               </tr>
               <tr>
-                <td>Mandy</td>
-                <td class="pending">TBC</td>
-                <td class="pending">TBC</td>
-                <td class="pending">Details pending</td>
+                <td>Mandy &amp; Millie</td>
+                <td>LHR → OMA</td>
+                <td>Mon, Nov 30</td>
+                <td class="pending">Dep ~6:00 AM · flight details pending</td>
               </tr>
             </tbody>
           </table>
@@ -506,45 +755,431 @@
       <div class="section-body">
         <div class="itinerary-list">
 
-          <div class="itin-item">
-            <div class="itin-date">Sat, Nov 21</div>
-            <div class="itin-desc"><span class="label">Anna departs Seattle</span> — overnight flight to London Heathrow</div>
-          </div>
+          <div class="trip-section"><span class="trip-section-label">London</span></div>
 
-          <div class="itin-item">
-            <div class="itin-date">Sun, Nov 22</div>
-            <div class="itin-desc"><span class="label">Anna arrives London</span> — London stay begins</div>
-          </div>
+          <details class="day-tile">
+            <summary>
+              <span class="day-badge"><span class="dow">Sat</span><span class="num">21</span><span class="mon">Nov</span></span>
+              <span class="day-heading"><span class="day-location">Departures</span><span class="day-tag easy">Easy</span></span>
+            </summary>
+            <div class="day-body">
+              <div class="section-label">Planned</div>
+              <div class="planned-list">
+                <div class="planned-item">
+                  <div class="planned-time">1:35 PM</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Anna's flight</div>
+                    <div class="planned-desc">SEA → LHR, AA 6909, overnight, arriving 7:10 AM the next day.</div>
+                  </div>
+                </div>
+                <div class="planned-item">
+                  <div class="planned-time">1:08 PM</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Mandy &amp; Millie's flight</div>
+                    <div class="planned-desc">OMA → LHR, UA 920, overnight, arriving 7:55 AM the next day.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
 
-          <div class="itin-item">
-            <div class="itin-date">Nov 22 – 23</div>
-            <div class="itin-desc"><span class="label">London</span> — <span class="itin-placeholder">Itinerary to come</span></div>
-          </div>
+          <details class="day-tile">
+            <summary>
+              <span class="day-badge"><span class="dow">Sun</span><span class="num">22</span><span class="mon">Nov</span></span>
+              <span class="day-heading"><span class="day-location">Arrive London</span><span class="day-tag easy">Easy</span></span>
+            </summary>
+            <div class="day-body">
+              <div class="section-label">Planned</div>
+              <div class="planned-list">
+                <div class="planned-item">
+                  <div class="planned-time">7:10 AM</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Arrive Heathrow</div>
+                    <div class="planned-desc">Landing time for the overnight flight from Seattle.</div>
+                  </div>
+                </div>
+                <div class="planned-item">
+                  <div class="planned-time">TBD</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Hotel check-in</div>
+                    <div class="planned-desc">Address to follow once the London hotel is booked.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="section-label">Suggested</div>
+              <div class="suggestion-grid">
+                <div class="suggestion-tile" style="--tile-color: var(--cat-stroll)">
+                  <span class="suggestion-tag">Stroll</span>
+                  <span class="suggestion-name">Covent Garden</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=Covent+Garden+London" target="_blank" rel="noopener">📍 Covent Garden, London WC2</a></span>
+                  <span class="suggestion-desc">Street performers, market stalls, and covered arcades — an easy first afternoon after an overnight flight.</span>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-stroll)">
+                  <span class="suggestion-tag">Stroll</span>
+                  <span class="suggestion-name">South Bank</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=South+Bank+London" target="_blank" rel="noopener">📍 South Bank, London SE1</a></span>
+                  <span class="suggestion-desc">The river path past the London Eye and Tate Modern, with benches whenever a break sounds good.</span>
+                </div>
+              </div>
+            </div>
+          </details>
 
-          <div class="itin-item">
-            <div class="itin-date">~Nov 23 – 24</div>
-            <div class="itin-desc"><span class="label">Eurostar to Paris</span> — London St Pancras → Paris Gare du Nord</div>
-          </div>
+          <details class="day-tile">
+            <summary>
+              <span class="day-badge"><span class="dow">Mon</span><span class="num">23</span><span class="mon">Nov</span></span>
+              <span class="day-heading"><span class="day-location">London — Full Day</span><span class="day-tag moderate">Moderate</span></span>
+            </summary>
+            <div class="day-body">
+              <div class="section-label">Suggested</div>
+              <div class="suggestion-grid">
+                <div class="suggestion-tile" style="--tile-color: var(--cat-see)">
+                  <span class="suggestion-tag">See</span>
+                  <span class="suggestion-name">National Gallery</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=National+Gallery+London" target="_blank" rel="noopener">📍 Trafalgar Square, London WC2N 5DN</a></span>
+                  <span class="suggestion-desc">One of the world's great collections of European painting, right on Trafalgar Square.</span>
+                  <div class="suggestion-pills"><span class="pill pill-tip">Free entry</span></div>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-shop)">
+                  <span class="suggestion-tag">Shop</span>
+                  <span class="suggestion-name">Borough Market</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=Borough+Market+London" target="_blank" rel="noopener">📍 8 Southwark St, London SE1 1TL</a></span>
+                  <span class="suggestion-desc">A covered food market by London Bridge — good for a browse or an early lunch.</span>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-stroll)">
+                  <span class="suggestion-tag">Stroll</span>
+                  <span class="suggestion-name">Along the Thames</span>
+                  <span class="suggestion-desc">South Bank toward Westminster, with Big Ben and the London Eye across the water.</span>
+                </div>
+              </div>
+            </div>
+          </details>
 
-          <div class="itin-item">
-            <div class="itin-date">Tue, Nov 24</div>
-            <div class="itin-desc"><span class="label">Paris apartment check-in</span> — available from 15:00</div>
-          </div>
+          <div class="trip-section"><span class="trip-section-label">Paris</span></div>
 
-          <div class="itin-item">
-            <div class="itin-date">Nov 24 – 30</div>
-            <div class="itin-desc"><span class="label">Paris</span> — <span class="itin-placeholder">Itinerary to come</span></div>
-          </div>
+          <details class="day-tile">
+            <summary>
+              <span class="day-badge"><span class="dow">Tue</span><span class="num">24</span><span class="mon">Nov</span></span>
+              <span class="day-heading"><span class="day-location">Eurostar to Paris · Arrive</span><span class="day-tag easy">Easy</span></span>
+            </summary>
+            <div class="day-body">
+              <div class="section-label">Planned</div>
+              <div class="planned-list">
+                <div class="planned-item">
+                  <div class="planned-time">TBD</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Eurostar to Paris</div>
+                    <div class="planned-address"><a href="https://maps.google.com/?q=London+St+Pancras+International" target="_blank" rel="noopener">📍 London St Pancras International</a></div>
+                    <div class="planned-desc">Train 9024, ~2.5 hrs to Gare du Nord. Anna, Mandy, and Millie travel together.</div>
+                  </div>
+                </div>
+                <div class="planned-item">
+                  <div class="planned-time">12:35 PM</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Karyn &amp; Marlene arrive</div>
+                    <div class="planned-desc">Flying direct from Dublin to Paris, EI 0524, landing at CDG.</div>
+                  </div>
+                </div>
+                <div class="planned-item">
+                  <div class="planned-time">3:00 PM</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Apartment check-in</div>
+                    <div class="planned-address"><a href="https://maps.google.com/?q=Rue+Croix+des+Petits+Champs,+75001+Paris" target="_blank" rel="noopener">📍 Rue Croix des Petits Champs, 75001</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="section-label">Suggested</div>
+              <div class="suggestion-grid">
+                <div class="suggestion-tile" style="--tile-color: var(--cat-stroll)">
+                  <span class="suggestion-tag">Stroll</span>
+                  <span class="suggestion-name">Palais Royal Gardens</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=Place+du+Palais+Royal,+75001+Paris" target="_blank" rel="noopener">📍 Pl. du Palais Royal, 75001</a></span>
+                  <span class="suggestion-desc">Colonnaded arcades and manicured gardens right outside the apartment — free and quiet.</span>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-dine)">
+                  <span class="suggestion-tag">Dine</span>
+                  <span class="suggestion-name">Café Kitsuné</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=51+Galerie+de+Montpensier,+75001+Paris" target="_blank" rel="noopener">📍 51 Galerie de Montpensier, 75001</a></span>
+                  <span class="suggestion-desc">A coffee spot tucked into the Palais Royal arcades — a good first stop after the flight.</span>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-stroll)">
+                  <span class="suggestion-tag">Stroll</span>
+                  <span class="suggestion-name">Toward the Seine</span>
+                  <span class="suggestion-desc">No fixed route — the river is a short walk from the apartment in either direction.</span>
+                </div>
+              </div>
+            </div>
+          </details>
 
-          <div class="itin-item">
-            <div class="itin-date">Mon, Nov 30</div>
-            <div class="itin-desc"><span class="label">Anna departs Paris</span> — CDG → LHR → SEA</div>
-          </div>
+          <details class="day-tile">
+            <summary>
+              <span class="day-badge"><span class="dow">Wed</span><span class="num">25</span><span class="mon">Nov</span></span>
+              <span class="day-heading"><span class="day-location">The Louvre · Montmartre Evening</span><span class="day-tag moderate">Moderate</span></span>
+            </summary>
+            <div class="day-body">
+              <div class="section-label">Planned</div>
+              <div class="planned-list">
+                <div class="planned-item">
+                  <div class="planned-time">9:00 AM</div>
+                  <div class="planned-body">
+                    <div class="planned-name">The Louvre</div>
+                    <div class="planned-address"><a href="https://maps.google.com/?q=Rue+de+Rivoli,+75001+Paris" target="_blank" rel="noopener">📍 Rue de Rivoli, 75001</a></div>
+                    <div class="planned-desc">Timed entry — allow 2.5–3 hrs.</div>
+                  </div>
+                </div>
+                <div class="planned-item">
+                  <div class="planned-time">5:15 PM</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Montmartre Food Tour</div>
+                    <div class="planned-address"><a href="https://maps.google.com/?q=82+Boulevard+de+Clichy,+75018+Paris" target="_blank" rel="noopener">📍 82 Boulevard de Clichy, 75018</a></div>
+                    <div class="planned-desc">Full meal included, meet near the Moulin Rouge.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="section-label">Suggested</div>
+              <div class="suggestion-grid">
+                <div class="suggestion-tile" style="--tile-color: var(--cat-dine)">
+                  <span class="suggestion-tag">Dine</span>
+                  <span class="suggestion-name">Café break</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=113+Rue+de+Rivoli,+75001+Paris" target="_blank" rel="noopener">📍 Jardin des Tuileries, 75001</a></span>
+                  <span class="suggestion-desc">A chair by the fountain between the Louvre and Concorde, mid-morning.</span>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-see)">
+                  <span class="suggestion-tag">See</span>
+                  <span class="suggestion-name">Sacré-Cœur</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=Sacre-Coeur+Basilica+Paris" target="_blank" rel="noopener">📍 Montmartre, 75018</a></span>
+                  <span class="suggestion-desc">The view over Paris from the steps, timed for dusk before the food tour.</span>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-see)">
+                  <span class="suggestion-tag">See</span>
+                  <span class="suggestion-name">Place du Tertre</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=Place+du+Tertre,+75018+Paris" target="_blank" rel="noopener">📍 Pl. du Tertre, 75018</a></span>
+                  <span class="suggestion-desc">The artist square just behind Sacré-Cœur, painters and portraits included.</span>
+                </div>
+              </div>
+            </div>
+          </details>
 
-          <div class="itin-item">
-            <div class="itin-date">Tue, Dec 1</div>
-            <div class="itin-desc"><span class="label">Paris apartment checkout</span> — by 11:00</div>
-          </div>
+          <details class="day-tile">
+            <summary>
+              <span class="day-badge"><span class="dow">Thu</span><span class="num">26</span><span class="mon">Nov</span></span>
+              <span class="day-heading"><span class="day-location">Musée d'Orsay · Eiffel Tower</span><span class="day-tag moderate">Moderate</span></span>
+            </summary>
+            <div class="day-body">
+              <div class="section-label">Planned</div>
+              <div class="planned-list">
+                <div class="planned-item">
+                  <div class="planned-time">9:30 AM</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Musée d'Orsay</div>
+                    <div class="planned-address"><a href="https://maps.google.com/?q=1+Rue+de+la+Legion+d+Honneur,+75007+Paris" target="_blank" rel="noopener">📍 1 Rue de la Légion d'Honneur, 75007</a></div>
+                    <div class="planned-desc">Timed entry — allow 2.5 hrs.</div>
+                  </div>
+                </div>
+                <div class="planned-item">
+                  <div class="planned-time">Dusk</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Eiffel Tower</div>
+                    <div class="planned-address"><a href="https://maps.google.com/?q=Eiffel+Tower+Paris" target="_blank" rel="noopener">📍 Champ de Mars, 75007</a></div>
+                    <div class="planned-desc">Elevator to the summit.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="section-label">Suggested</div>
+              <div class="suggestion-grid">
+                <div class="suggestion-tile" style="--tile-color: var(--cat-dine)">
+                  <span class="suggestion-tag">Dine</span>
+                  <span class="suggestion-name">Orsay café</span>
+                  <span class="suggestion-desc">Inside the museum, with Seine views — an easy lunch between galleries.</span>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-stroll)">
+                  <span class="suggestion-tag">Stroll</span>
+                  <span class="suggestion-name">Tuileries Garden</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=113+Rue+de+Rivoli,+75001+Paris" target="_blank" rel="noopener">📍 113 Rue de Rivoli, 75001</a></span>
+                  <span class="suggestion-desc">The formal garden between the Louvre and Concorde, on the way back from the Seine.</span>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-see)">
+                  <span class="suggestion-tag">See</span>
+                  <span class="suggestion-name">Eiffel Tower light show</span>
+                  <span class="suggestion-desc">Sparkling lights on the hour after dusk, visible from the tower or a distance.</span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="day-tile">
+            <summary>
+              <span class="day-badge"><span class="dow">Fri</span><span class="num">27</span><span class="mon">Nov</span></span>
+              <span class="day-heading"><span class="day-location">Château de Versailles</span><span class="day-tag moderate">Moderate</span></span>
+            </summary>
+            <div class="day-body">
+              <div class="section-label">Planned</div>
+              <div class="planned-list">
+                <div class="planned-item">
+                  <div class="planned-time">Morning</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Château de Versailles</div>
+                    <div class="planned-address"><a href="https://maps.google.com/?q=Chateau+de+Versailles" target="_blank" rel="noopener">📍 Place d'Armes, 78000 Versailles</a></div>
+                    <div class="planned-desc">Full day via RER C — Hall of Mirrors, Apartments, Gardens, Trianon Estate.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="day-tile">
+            <summary>
+              <span class="day-badge"><span class="dow">Sat</span><span class="num">28</span><span class="mon">Nov</span></span>
+              <span class="day-heading"><span class="day-location">Open Day</span><span class="day-tag easy">Easy</span></span>
+            </summary>
+            <div class="day-body">
+              <div class="section-label">Suggested</div>
+              <div class="suggestion-grid">
+                <div class="suggestion-tile" style="--tile-color: var(--cat-see)">
+                  <span class="suggestion-tag">See</span>
+                  <span class="suggestion-name">Sainte-Chapelle</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=Sainte-Chapelle+Paris" target="_blank" rel="noopener">📍 8 Bd du Palais, 75001</a></span>
+                  <span class="suggestion-desc">Stained glass on Île de la Cité, covered by the Museum Pass.</span>
+                  <div class="suggestion-pills"><span class="pill pill-tip">Timed entry required</span></div>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-see)">
+                  <span class="suggestion-tag">See</span>
+                  <span class="suggestion-name">Catacombs</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=Catacombes+de+Paris" target="_blank" rel="noopener">📍 1 Av du Colonel Henri Rol-Tanguy, 75014</a></span>
+                  <span class="suggestion-desc">The underground ossuary beneath the 14th arrondissement.</span>
+                  <div class="suggestion-pills"><span class="pill pill-tip">Timed entry, releases 7 days ahead</span></div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="day-tile">
+            <summary>
+              <span class="day-badge"><span class="dow">Sun</span><span class="num">29</span><span class="mon">Nov</span></span>
+              <span class="day-heading"><span class="day-location">Strasbourg Day Trip</span><span class="day-tag easy">Easy</span></span>
+            </summary>
+            <div class="day-body">
+              <div class="section-label">Planned</div>
+              <div class="planned-list">
+                <div class="planned-item">
+                  <div class="planned-time">Morning</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Strasbourg Day Trip</div>
+                    <div class="planned-address"><a href="https://maps.google.com/?q=Gare+de+l%27Est+Paris" target="_blank" rel="noopener">📍 Gare de l'Est, 75010 Paris</a></div>
+                    <div class="planned-desc">TGV, ~1h45m each way, all five travelers going.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="section-label">Suggested</div>
+              <div class="suggestion-grid">
+                <div class="suggestion-tile" style="--tile-color: var(--cat-stroll)">
+                  <span class="suggestion-tag">Stroll</span>
+                  <span class="suggestion-name">Petite France</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=Petite+France+Strasbourg" target="_blank" rel="noopener">📍 Petite France, Strasbourg</a></span>
+                  <span class="suggestion-desc">Half-timbered houses along the canals, in the old tanners' district.</span>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-shop)">
+                  <span class="suggestion-tag">Shop</span>
+                  <span class="suggestion-name">Christmas Market</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=Place+Kleber+Strasbourg" target="_blank" rel="noopener">📍 Place Kléber / Place Broglie, Strasbourg</a></span>
+                  <span class="suggestion-desc">One of the oldest Christmas markets in Europe, spread across several squares.</span>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-dine)">
+                  <span class="suggestion-tag">Dine</span>
+                  <span class="suggestion-name">Choucroute or flammekueche</span>
+                  <span class="suggestion-desc">Traditional Alsatian lunch at a winstub — choucroute is the sauerkraut-and-meat platter, flammekueche the thin flatbread with crème fraîche and onions.</span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="day-tile">
+            <summary>
+              <span class="day-badge"><span class="dow">Mon</span><span class="num">30</span><span class="mon">Nov</span></span>
+              <span class="day-heading"><span class="day-location">Latin Quarter · Le Marais</span><span class="day-tag moderate">Moderate</span></span>
+            </summary>
+            <div class="day-body">
+              <div class="section-label">Planned</div>
+              <div class="planned-list">
+                <div class="planned-item">
+                  <div class="planned-time">11:30 AM</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Anna's flight departs</div>
+                    <div class="planned-desc">CDG → LHR → SEA, AA 7220 / AA 6908, arriving Seattle 4:55 PM.</div>
+                  </div>
+                </div>
+                <div class="planned-item">
+                  <div class="planned-time">5–6 PM</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Pack &amp; wind down</div>
+                    <div class="planned-desc">Checkout is 11 AM tomorrow.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="section-label">Suggested</div>
+              <div class="suggestion-grid">
+                <div class="suggestion-tile" style="--tile-color: var(--cat-shop)">
+                  <span class="suggestion-tag">Shop</span>
+                  <span class="suggestion-name">Shakespeare &amp; Company</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=37+Rue+de+la+B%C3%BBcherie,+75005+Paris" target="_blank" rel="noopener">📍 37 Rue de la Bûcherie, 75005</a></span>
+                  <span class="suggestion-desc">The well-known English-language bookshop across the river from Notre-Dame.</span>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-see)">
+                  <span class="suggestion-tag">See</span>
+                  <span class="suggestion-name">Notre-Dame</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=6+Parvis+Notre-Dame,+75004+Paris" target="_blank" rel="noopener">📍 6 Parvis Notre-Dame, 75004</a></span>
+                  <span class="suggestion-desc">Reopened in December 2024 after restoration.</span>
+                  <div class="suggestion-pills"><span class="pill pill-tip">Free entry, timed reservation 2–3 days ahead</span></div>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-stroll)">
+                  <span class="suggestion-tag">Stroll</span>
+                  <span class="suggestion-name">Place des Vosges</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=Place+des+Vosges,+75004+Paris" target="_blank" rel="noopener">📍 Pl. des Vosges, 75004</a></span>
+                  <span class="suggestion-desc">The oldest planned square in Paris, in the heart of Le Marais.</span>
+                </div>
+                <div class="suggestion-tile" style="--tile-color: var(--cat-dine)">
+                  <span class="suggestion-tag">Dine</span>
+                  <span class="suggestion-name">Falafel</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=Rue+des+Rosiers,+75004+Paris" target="_blank" rel="noopener">📍 Rue des Rosiers, 75004</a></span>
+                  <span class="suggestion-desc">A Marais tradition — several stands along the street, eaten standing up.</span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="day-tile">
+            <summary>
+              <span class="day-badge"><span class="dow">Tue</span><span class="num">1</span><span class="mon">Dec</span></span>
+              <span class="day-heading"><span class="day-location">Departure</span><span class="day-tag easy">Easy</span></span>
+            </summary>
+            <div class="day-body">
+              <div class="section-label">Planned</div>
+              <div class="planned-list">
+                <div class="planned-item">
+                  <div class="planned-time">11:00 AM</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Apartment checkout</div>
+                    <div class="planned-address"><a href="https://maps.google.com/?q=Rue+Croix+des+Petits+Champs,+75001+Paris" target="_blank" rel="noopener">📍 Rue Croix des Petits Champs, 75001</a></div>
+                  </div>
+                </div>
+                <div class="planned-item">
+                  <div class="planned-time">11:55 AM</div>
+                  <div class="planned-body">
+                    <div class="planned-name">Karyn &amp; Marlene depart</div>
+                    <div class="planned-desc">CDG → ORD → CID, UA 0986 / UA 4588.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="section-label">Suggested</div>
+              <div class="suggestion-grid">
+                <div class="suggestion-tile" style="--tile-color: var(--cat-dine)">
+                  <span class="suggestion-tag">Dine</span>
+                  <span class="suggestion-name">Télescope</span>
+                  <span class="suggestion-address"><a href="https://maps.google.com/?q=5+Rue+Villedo,+75001+Paris" target="_blank" rel="noopener">📍 5 Rue Villedo, 75001</a></span>
+                  <span class="suggestion-desc">A serious, quiet coffee shop a few streets from the apartment — a good last stop before the airport.</span>
+                </div>
+              </div>
+            </div>
+          </details>
 
         </div>
 
@@ -577,7 +1212,7 @@
           <a href="paris-anna-itinerary.html" style="text-decoration:none;">
             <div style="background:#F5EFE6; border-radius:10px; padding:1.1rem 1.2rem; box-shadow:0 2px 10px var(--shadow); border-left:3px solid var(--accent-steel); transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(42,95,160,0.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 10px rgba(42,95,160,0.22)'">
               <div style="font-family:'Playfair Display',serif; font-size:1rem; font-weight:600; color:var(--accent-royal); margin-bottom:0.3rem;">Anna's Itinerary</div>
-              <div style="font-size:0.85rem; color:var(--body); line-height:1.5;">A day-by-day plan covering London, Paris, and a Bruges day trip — with tile-based options for each day.</div>
+              <div style="font-size:0.85rem; color:var(--body); line-height:1.5;">A day-by-day plan covering London, Paris, and a Strasbourg day trip — with tile-based options for each day.</div>
               <div style="margin-top:0.65rem; font-size:0.78rem; font-weight:700; color:var(--accent-steel); letter-spacing:0.04em;">View →</div>
             </div>
           </a>
